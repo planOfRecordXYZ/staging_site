@@ -1,0 +1,248 @@
+
+/* PROJECTS PAGE */
+
+
+.categories{
+   
+    margin: 50px;
+    margin-top: 200px;
+    display: flex;
+    gap: 150px;
+    font-family: var(--header-font);
+    height: 250px;
+}
+.clear button{
+    font-family: var(--header-font);
+    font-size: 40px;
+}
+.type-of-work p{
+    color: #C0C0C8;
+    font-size: 32px;
+}
+
+.filter-checkboxes{
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+}
+/* CSS for custom checkboxes */
+
+  /* Hide the checkboxes initially */
+.custom-checkbox {
+    display: none;
+    opacity: 0; /* Hide the checkbox initially */
+    transition: opacity 0.3s ease; /* Add transition for opacity */
+  }
+  .custom-label {
+    display: inline-block;
+    transition: transform 0.3s ease; /* Add transition for transform */
+    font-size: 20px;
+}
+.custom-label:hover {
+    transform: translateX(5px); /* Shift label 5 pixels to the right */
+}   
+  /* Show checkboxes on hover */
+  .custom-label:hover .custom-checkbox {
+    display: inline-block;
+    -webkit-appearance:none;
+    width: 15px;
+    height: 15px;
+    margin-right: 3px;
+    border: 1px solid black;
+    border-radius: 50%;
+    opacity: 1; /* Ensure opacity remains at 1 when checked */
+    
+  }
+  
+  /* Ensure checkboxes remain visible once clicked */
+  .custom-checkbox:checked {
+    display: inline-block;
+    -webkit-appearance: none;
+    width: 15px;
+    height: 15px;
+    margin-right: 3px;
+    border: 1px solid black;
+    background-color:black;
+    border-radius: 50%;
+    opacity: 1; /* Ensure opacity remains at 1 when checked */
+  }
+  
+  /* Create the checkmark */
+  .checkmark:after {
+    content: "";
+    position: absolute;
+    display: none;
+  }
+  
+  .custom-checkbox:checked, .custom-label:hover .custom-checkbox {
+    transition: opacity 0.5s ease; /* Add transition for opacity */
+}
+.industry p{
+    color: #C0C0C8;
+    font-size: 32px;
+}
+.project{
+
+    display: grid;
+    border-top: 1px solid black;
+    padding: 20px;
+    grid-template-columns: 200px 200px 200px 200px 0fr;
+    grid-column-gap: 200px;
+    cursor: pointer;
+  
+}
+.project p{
+    font-size: 24px;
+}
+.project a{
+    font-size: 24px;
+}
+.project:hover{
+    background-color: black;
+    color: white;
+}
+.project:hover a{
+    background-color: black;
+    color: white;
+    font-weight: 700;   
+}
+.projects{
+    border-bottom: 1px solid black;
+    
+}
+.imageList::-webkit-scrollbar {
+    width: 12px;
+}
+.imageList::-webkit-scrollbar-thumb {
+    border-radius: 6px;
+    border: none; 
+}
+.imageList::-webkit-scrollbar-button {
+    width: 0;
+    height: 0;
+    display: none;
+}
+.imageList {
+    scrollbar-width: thin; /* "thin" or "auto" */
+    scrollbar-color: #fff #fff;
+    scrollbar-width: 8px;
+    overflow-x: auto;
+    white-space: nowrap;
+    cursor: ew-resize;
+}
+.imageList:hover {
+    scrollbar-color: #000 #fff;; /* thumb color, track color */
+}
+
+.media-item {
+    display: inline-block;
+    margin-right: 10px; /* Adjust as needed */
+}
+
+.project-image img,
+.project-video {    
+    height: 200px; /* Adjust as needed */
+    object-fit: cover;
+}
+
+
+
+.image{
+    margin: 10px;
+}
+.image{
+    height: 200px;
+    width: auto;
+    overflow: hidden;
+}
+/* PROJECT PAGE */
+.image img{
+    
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+.image video{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+.project-title{
+    font-size: 100px;
+}
+.project-thumbnail{
+    width: 500px;
+    height: 500px;
+    overflow: hidden;
+}
+.hover-image img{
+    display: none;
+}
+.project-thumbnail:hover .hover-image img{
+    display: block;
+}
+
+/* CSS to hide the thumbnail image when the hover image is being hovered over */
+.project-thumbnail:hover .thumbnail-image {
+    display: none;
+}
+.gallery{
+    width: 200px;
+    height: 200px;
+    display: flex;
+    gap: 50px;
+}
+.gallery-img{
+    display: flex;
+    gap: 50px;
+}
+
+/* NewProject Page */
+.new-project{
+    margin-top: 100px;
+}
+.form-row{
+    display: flex;
+    justify-content: space-between;
+    gap: 30px;
+}
+.btn-file {
+    position: relative;
+    overflow: hidden;
+}
+.btn-file input[type=file] {
+    position: absolute;
+    top: 0;
+    right: 0;
+    min-width: 100%;
+    min-height: 100%;
+    font-size: 100px;
+    text-align: right;
+    filter: alpha(opacity=0);
+    opacity: 0;
+    outline: none;
+    background: white;
+    cursor: inherit;
+    display: block;
+}   
+
+#img-upload-hover,#img-upload-thumbnail,.img-thumbnail{
+    width: 200px;
+    margin: 20px;
+}
+.currentImages{
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    overflow-x: scroll;
+}
+.del-btn{
+    margin: 10px;
+}
+.clear button {
+    font-family: var(--header-font);
+    font-size: 25px;
+    cursor: pointer;
+    position: absolute;
+    right: 120px;
+}
