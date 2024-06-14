@@ -1,0 +1,410 @@
+@media only screen and (max-width: 770px) {
+
+	.desktop-only {
+		display: none;
+	}
+
+	.mobile-only {
+		display: block;
+	}
+
+	video.mobile-only {
+		width: 100%;
+	}
+
+	header ul.mobile-only {
+		display: flex;
+	  justify-content: space-between;
+	  align-items: center;
+	  font-family: 'SpeziaRegular';
+	  position: fixed;
+    z-index: 10;
+    background: white;
+    width: 100%;
+	}
+
+
+	section.homepage {
+	  padding-top: 111px;
+	}
+
+	section.aboutpage, section.approachpage {
+		padding-top: 141px;
+	}
+
+	section.contactpage {
+    padding-top: 144px;
+}
+
+
+
+	:root {
+		--header-font: 'Supreme';
+		--main-font: 'NeueHaas55';
+		--regular-font-size: 16px;
+		--regular-line-height: 19.2px;
+		--menu-line-height: 12.8px;
+		--footer-font-size: 14px;
+		--footer-line-height: 14px;
+		--main-font-size: 24px;
+		--main-font-weight: 400;
+		--main-line-height: 26.4px;
+		--main-letter-spacing: -1px;
+		--header-font-size: 32px;
+		--header-font-weight: 400;
+		--header-line-height: 30px;
+		--header-letter-spacing: -0.06em;;
+		--secondary-heading-font-size: 48px;
+		--secondary-heading-line-height: 43.2px;
+		--secondary-heading-letter-spacing: -2px;
+		--tertiary-heading-font-size: 16px;
+		--tertiary-heading-line-height: 19.2px;
+		--tertiary-heading-letter-spacing: -1px;
+		--title-font-size: 32px;
+		--title-line-height: 30px;
+		--title-letter-spacing: -1px;
+		--primary-font-color: #000000;
+		--secondary-font-color: #c0c0c8;
+		--link-hover: #587EF1;
+		--background-color: #F5F5F5;
+	}
+
+	header ul {
+    padding: 58px 4% 33px;
+  }
+
+  header ul li {
+	font-family: var(--main-font);
+	font-size: 16px;
+	font-weight: 450;
+	line-height: 13px;
+	letter-spacing: 0em;
+
+  }
+
+	h1 {
+		text-align: left;
+	} 
+
+	.services li {
+		font-weight: 400;
+		letter-spacing: normal;
+		font-size: var(--tertiary-heading-font-size);
+    line-height: var(--tertiary-heading-font-line-height);
+
+	}
+
+	.mobile-menu {
+		position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: white;
+    z-index: 10;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 0 22px;
+    text-align: center;
+        transition: 0.3s;
+	}
+
+	.mobile-menu ul {
+		width: 100%;
+    justify-content: center;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+	}
+
+	.mobile-menu ul.mobile-only {
+		width: 100%;
+		flex-direction: row;
+		display: flex;
+		justify-content: space-between;
+		height: unset;
+		padding: 58px 0 33px;
+	}
+
+	.mobile-menu.closed {
+		transform: translateY(-100%);
+	}
+
+	.mobile-menu ul.mobile-only li {
+		border: none;
+		font-size: 16px;
+    line-height: 19.2px;
+    letter-spacing: -0.2px;;
+	}
+
+	.mobile-menu ul.mobile-only li.menu-toggle img {
+		height: 12px;
+	}
+
+	.mobile-menu ul li {
+    font-family: var(--header-font);
+		font-size: var(--header-font-size);
+		letter-spacing: -0.06em;
+		line-height: 88px;
+		border-bottom: 1px solid #c0c0c8;
+	}
+
+	.mobile-menu ul li:last-of-type {
+		border-bottom: none;
+	}
+
+	.homepage h1 {
+		padding: 48px 22px 48px;
+    margin: 0;
+	}
+
+	.homepage img {
+		width: 100%;
+	}
+
+	.homepage .about-pillars .secondary-title {
+		margin-bottom: 6px;
+	}
+
+	section.homepage {
+		flex-direction: column;
+		align-items: flex-start;
+	}
+
+  .three-column {
+		grid-template-columns: repeat(1, minmax(180px,1fr));
+		grid-gap: 48px;
+	}
+
+	.two-column {
+		grid-template-columns: repeat(1, minmax(100px,1fr));
+		grid-gap: 48px;
+	}
+
+	.aboutpage {
+		display: flex;
+    flex-direction: column;
+    padding: 0;
+	}
+
+	.about-services, .about-clients, .about-inquiries, .about-team, .about-awards {
+		margin: 0 4%;
+	}
+
+	.about-workwithus {
+		padding: 64px 22px;
+		margin-left: 0;
+		margin-right: 0;
+	}
+
+	.aboutpage .about-workwithus h2 {
+    font-size: 24px;
+    line-height: 28px;
+    letter-spacing: 0px;
+}
+
+	.about-workwithus p {
+    margin-bottom: 32px;
+    letter-spacing: normal;
+	}
+
+	/* .about-workwithus a {
+/*    color: black;
+	} */
+
+	
+	
+
+
+	.about-workwithus .two-column {
+    grid-gap: 0;
+	}
+
+	.about-title {
+		display: none;
+	}
+
+	.about-services {
+		display: none;
+	}
+
+	.about-inquiries {
+		order: 2;
+		margin: 64px 22px 66px;
+		border-top: none;
+    margin-top: 0;
+	}
+
+	.about-inquiries .secondary-title {
+		margin-bottom: 8px;
+	}
+
+	.about-team {
+		order: -1;
+		padding-top: 0;
+		padding-bottom: 56px;
+		border-top: none;
+	}
+
+	.about-team .secondary-title {
+		margin-bottom: 0;
+	}
+
+
+	.about-team .team-member img {
+		max-width: 162px;
+	}
+
+
+	.team-member {
+		padding-left: 103px;
+	}
+
+	.about-team .team-title {
+    margin: 24px 0 8px 0;
+    letter-spacing: 0;
+	}
+
+	.about-workwithus .three-column {
+		grid-template-columns: 87px 1fr 1fr;
+    grid-gap: 16px;
+	}
+
+	.about-clients {
+		border-top: 1px solid;
+    padding-top: 56px;
+	}
+
+	.about-clients .three-column, .about-clients .secondary-title {
+		padding-left: 103px;
+	}
+
+	.about-clients .three-column, .about-awards .three-column {
+		grid-gap: 0;
+	}
+
+	.about-awards {
+		padding-left: 103px;
+		border-top: none;
+		padding-bottom: 39px;
+
+	}
+
+	.about-pillars {
+		padding-left: 103px;
+		border-top: none;
+    padding-top: 0;
+	}
+
+	.about-pillars p {
+		letter-spacing: normal;
+	}
+
+	.about-pillars.mobile-only li {
+		font-size: var(--main-font-size);
+		line-height: var(--main-line-height);
+		letter-spacing: normal;
+	}
+
+	.approach-title {
+		margin-bottom: 80px;
+	}
+
+	.approachpage h2 {
+    margin: 0;
+    max-width: 350px;
+  }
+
+  .about-pillars .three-column {
+  	grid-gap: 40px;
+  }
+
+  .about-pillars p.secondary-title {
+    margin-bottom: 16px;
+	}
+
+	.approachpage {
+    padding: 30px 22px 128px 22px;
+	}
+
+	.contactpage {
+		padding: 33px 4% 0;
+	}
+
+	.contactpage-grid {
+    grid-template-columns: 1fr;
+    grid-gap: 0px;
+    padding: 0;
+  }
+
+  .contactform p {
+  	letter-spacing: normal;
+  }
+
+	.email-submit-notice {
+	   margin: 16px 0 0 0;
+	}
+
+	.contactpage .about-title{
+		display: block;
+	}
+
+	.contactpage h2 {
+		margin: 0 0px 0px;
+	}
+
+	.contactemail .secondary-title a {
+    letter-spacing: normal;
+}
+
+	.contactform form {
+		margin: 0;
+	}
+
+	.form-grid {
+    grid-template-columns: repeat(1, minmax(100px, 1fr));
+  }
+
+  .contactform form input, .contactform form textarea {
+    margin-top: 16px;
+	}
+
+	.contactemail .info {
+    grid-gap: 26px;
+    flex-direction: column;
+	}
+
+
+	footer {
+		flex-direction: row;
+		justify-content: flex-start;
+	}
+
+	footer .left {
+		order: 2;
+	}
+
+	footer ul li {
+    margin-right: 35px;
+	}
+
+	footer ul li:nth-of-type(2) {
+		margin-right: 46px;
+	}
+
+
+  footer .right p {
+    margin-bottom: 80px;
+    font-size: 14px;
+    line-height: 16px;
+    max-width: 232px;
+  }
+
+
+	footer .right > div {
+		margin-left: 103px;
+    margin-right: -113px;
+	}
+}
