@@ -2,7 +2,6 @@
 // Establishing connection to the database
 $connect = mysqli_connect('localhost', 'root', 'root', 'planofrecord');
     //Connection string for currently deployed website 
-    // $connect = mysqli_connect('sql311.infinityfree.com', 'if0_35758296', 'MAHkWClFt4KkT', 'if0_35758296_planofrecord');
 
 // Checking if connection is successful
 if (!$connect) {

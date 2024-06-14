@@ -2,7 +2,7 @@
 <footer>
         <div class="contact-info">
             <div class="inquiry">
-                <p class="enquiry">General Inquiries</p>
+                <p class="enquiry" style="padding-bottom:8px">General Inquiries</p>
                 <p>info@planofrecord.xyz</p>
             </div>
             <div class="socials">
