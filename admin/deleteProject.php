@@ -1,32 +1,43 @@
 <?php
-if (isset ($_POST['confirmDelete'])) {
+if (isset($_POST['confirmDelete'])) {
     $project_id = $_POST['project_id'];
-    //Connection string
-    include ('../includes/connect.php');
-    $query = "DELETE FROM projects WHERE `project_id`='$project_id'";
-    $project = mysqli_query($connect, $query);
-    //Delete all images linked to the project and remove it from uploads folder
-    if ($project) {
-        $query2 = "SELECT 'image_url' FROM images WHERE `project_id`='$project_id'";
-        $imageResult=mysqli_query($connect, $query2);
-        if($imageResult) {
+    
+    // Connection string
+    include('../includes/connect.php');
+    
+    // Step 1: Delete project from the database
+    $query = "DELETE FROM projects WHERE project_id='$project_id'";
+    $projectResult = mysqli_query($connect, $query);
+    
+    if ($projectResult) {
+        // Step 2: Delete images associated with the project from the database and uploads folder
+        $query_images = "SELECT image_url FROM images WHERE project_id='$project_id'";
+        $imageResult = mysqli_query($connect, $query_images);
+        
+        if ($imageResult) {
             $uploadDirectory = '../uploads/';
-            while($imageRow = mysqli_fetch_assoc($imageResult)) {
+            
+            while ($imageRow = mysqli_fetch_assoc($imageResult)) {
                 $imagePath = $uploadDirectory . $imageRow['image_url'];
-                if(file_exists($imagePath)) {
-                    unlink($imagePath); // Delete the image file
+                
+                // Delete image file if it exists
+                if (file_exists($imagePath)) {
+                    unlink($imagePath);
                 }
             }
             
-            // Optionally, delete the image records from the database
-            $deleteImagesQuery = "DELETE FROM images WHERE project_id = '$project_id'";
+            // Step 3: Delete image records from the database
+            $deleteImagesQuery = "DELETE FROM images WHERE project_id='$project_id'";
             mysqli_query($connect, $deleteImagesQuery);
         }
+        
+        // Step 4: Redirect to projects.php after deletion
         header("Location: projects.php");
+        exit();
     } else {
-        echo "Failed" . mysqli_error($connect);
+        echo "Failed to delete project: " . mysqli_error($connect);
     }
-}
- else {
+} else {
     echo "You should not be here!";
 }
+?>

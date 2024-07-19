@@ -4,7 +4,7 @@
 <head>
     <!-- Meta charset and title -->
     <meta charset="UTF-8" />
-    <title>Add Project</title>
+    <title>Plan of Record</title>
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
@@ -15,27 +15,39 @@
     <link rel="icon" type="image/x-icon" href="../assets/favicon_io/favicon.ico">
     <link rel="stylesheet" href="../css/style.css">
     <link rel="stylesheet" href="../css/projectstyle.css">
+    <script src="../main.js"></script>
     <style>
         .heading{
             display: flex;
             align-items: center;
             gap: 12px;
         }
+
     </style>
 </head>
 <?php
+
+session_start();
+
+// Redirect to login page if not logged in
+if (!isset($_SESSION['admin_logged_in']) || $_SESSION['admin_logged_in'] !== true) {
+    header('Location: login.php');
+    exit;
+}
+
 // Include navigation
 include ('../reusable/adminNav.php');
 include ('../includes/connect.php');
 ?>
 
 <body>
+<div class="basketball desktop-only"><img src="../assets/cursor.png" alt="" width="24px"></div>
     <div class="new-project">
     <div class="container">
         <div class="row">
             
             <div class="col heading">
-                <a href="projects.php"><img src="../icons/back.png" alt="back-button" width="50px"></a>
+                <a href="dashboard.php"><img src="../icons/back.png" alt="back-button" width="50px"></a>
                 <h1 class="display-5 mt-4 mb-4">Add Project</h1>
             </div>
         </div>
@@ -84,13 +96,13 @@ include ('../includes/connect.php');
                     <div class="form-row">
                     <div class="mb-3">
                         <label for="Thumbnail" class="form-label">Thumbnail Video</label>
-                        <div class="container">
+                        <div class="thumbnail-container">
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <div class="input-group" style="width:400px;">
                                         <span class="input-group-btn">
-                                            <span class="btn btn-dark btn-file">
-                                                Browse <input type="file" id="Thumbnail" name="Thumbnail" accept=".png, .jpg, .jpeg, .mp4">
+                                            <span class="btn btn-secondary btn-file">
+                                                Browse <input type="file" id="Thumbnail" name="Thumbnail" accept=".png, .jpg, .jpeg, .mp4, .mov">
                                             </span>
                                         </span>
                                         <input type="text" class="form-control" readonly>
@@ -102,13 +114,13 @@ include ('../includes/connect.php');
                     </div>
                     <div class="mb-3">
                         <label for="Hover_image" class="form-label">Hover Image</label>
-                        <div class="container">
+                        <div class="hover-container">
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <div class="input-group" style="width:400px;">
                                         <span class="input-group-btn">
-                                            <span class="btn btn-dark btn-file">
-                                                Browse <input type="file" id="Hover_image" name="Hover_image" accept=".png, .jpg, .jpeg, .mp4">
+                                            <span class="btn btn-secondary btn-file">
+                                                Browse <input type="file" id="Hover_image" name="Hover_image" accept=".png, .jpg, .jpeg, .mp4, .mov">
                                             </span>
                                         </span>
                                         <input type="text" name="Hover_image" class="form-control" readonly>
@@ -121,13 +133,13 @@ include ('../includes/connect.php');
                     </div>
                     <div class="mb-5">
                         <label for="Project-image" class="form-label">Upload the project images</label>
-                        <div class="container">
+                        <div class="project-container">
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <div class="input-group">
                                         <span class="input-group-btn">
-                                            <span class="btn btn-dark btn-file">
-                                                Browse <input type="file" id="Project-image" name="Project-image[]" multiple accept=".png, .jpg, .jpeg, .mp4">
+                                            <span class="btn btn-secondary btn-file">
+                                                Browse <input type="file" id="Project-image" name="Project-image[]" multiple accept=".png, .jpg, .jpeg, .mp4, .mov">
                                             </span>
                                         </span>
                                         <input type="text" class="form-control" name="Project-image" id="file-names" readonly>
@@ -139,7 +151,7 @@ include ('../includes/connect.php');
                     </div>
                     <!-- Submit button -->
                     <div class="mb-3 col text-center">
-                    <button type="submit" class="btn btn-dark" name="newProject">Submit</button>
+                    <button type="submit" class="btn btn-dark" name="newProject">SUBMIT</button>
                     </div>
                 </form>
             </div>
@@ -155,19 +167,19 @@ include ('../includes/connect.php');
     var input = $(this),
         label = input.val().replace(/\\/g, '/').replace(/.*\//, '');
     input.trigger('fileselect', [label]);
-});
+    });
 
-$('.btn-file :file').on('fileselect', function(event, label) {
-    // This function updates the text input with the file name when a file is selected
-    var input = $(this).parents('.input-group').find(':text'),
-        log = label;
+    $('.btn-file :file').on('fileselect', function(event, label) {
+        // This function updates the text input with the file name when a file is selected
+        var input = $(this).parents('.input-group').find(':text'),
+            log = label;
 
-    if (input.length) {
-        input.val(log);
-    } else {
-        if (log) alert(log);
-    }
-});
+        if (input.length) {
+            input.val(log);
+        } else {
+            if (log) alert(log);
+        }
+    });
 
 function readURL(input, imgElementId) {
     // This function reads the file URL and displays the image or video in the specified element
@@ -180,6 +192,7 @@ function readURL(input, imgElementId) {
             reader.onload = function(e) {
                 $(imgElementId).attr('src', e.target.result).show();
                 $(imgElementId).siblings('video').hide(); // Hide the video element if it exists
+                console.log('Image selected: ' + file.name);
             }
             reader.readAsDataURL(file);
         } else if (file.type.startsWith('video/')) {
@@ -192,6 +205,7 @@ function readURL(input, imgElementId) {
             $(imgElementId).hide(); // Hide the image element
             $(imgElementId).siblings('video').remove(); // Remove any existing video element
             $(imgElementId).parent().append(video); // Append the new video element
+            console.log('Video selected: ' + file.name);
         }
     }
 }
@@ -216,6 +230,7 @@ function readMultipleURL(input, containerId) {
                             'class': 'img-thumbnail',
                             'style': 'margin: 10px; max-width: 100px; max-height: 100px;'
                         }).appendTo(container);
+                        console.log('Image selected: ' + file.name);
                     }
                     reader.readAsDataURL(file);
                 }
@@ -229,6 +244,7 @@ function readMultipleURL(input, containerId) {
                     video.style.maxWidth = '100px';
                     video.style.maxHeight = '100px';
                     container.append(video);
+                    console.log('Video selected: ' + file.name);
                 }
             }
         }

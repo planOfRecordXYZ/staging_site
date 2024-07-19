@@ -33,15 +33,15 @@
 
 	<section class="mobile-menu mobile-only closed">
 		<ul class="mobile-only">
-			<li><a href="./index.php">Plan of Record</a></li>
+			<li><a href="index.php">Plan of Record</a></li>
 			<li id="closeToggle" class="menu-toggle"><a href="#"><img src="./assets/close.png" alt=""></a></li>
 		</ul>
-		<ul>
-			<li><a href="./index.php">Plan of Record</a></li>
+		<ul class="mobile-navitems">
+			<li><a href="./index.php">Home</a></li>
 			<li><a href="./projects.php">Index</a></li>
-			<li><a href="./about.html">About</a></li>
-			<li><a href="./approach.html">Approach</a></li>
-			<li><a href="./contactUs.html">Contact</a></li>
+			<li><a href="./about.php">About</a></li>
+			<li><a href="./approach.php">Approach</a></li>
+			<li><a href="./contactUs.php">Contact</a></li>
 		</ul>
 	</section>
 
@@ -82,12 +82,18 @@
 
   </section>
 
+  <section class="with-respect">
+        <div>
+			<p><span class="bold">With Respect</span>—Plan of Record acknowledges that we are on the traditional territory of many nations including the Mississaugas of the Credit, the Anishnabeg, the Chippewa, the Haudenosaunee and the Wendat peoples. We are grateful to have the opportunity to work on this land.</p>
+		</div>
+  </section>
+
   <?php include('reusable/footer.php'); ?>
 
 	<script>
     document.addEventListener("DOMContentLoaded", () => {
       window.setTimeout(function() {
-      	console.log('overlay add fade')
+      	// console.log('overlay add fade')
         document.querySelector('.fade-overlay').classList.add('faded')
       }, 230);
     });

@@ -3,18 +3,35 @@
 
 
 .categories{
-   
     margin: 50px;
     margin-top: 200px;
-    display: flex;
-    gap: 150px;
+    /* display: flex; */
+    gap: 170px;
     font-family: var(--header-font);
     height: 250px;
+    display: none;
 }
-.clear button{
+
+
+.clear button {
+    left: 360px;
+    top: 50px; 
     font-family: var(--header-font);
-    font-size: 40px;
+    font-size: 16px;
+    cursor: pointer;
+    z-index: 100; 
 }
+
+.clearBtn {
+    font-family: var(--header-font);
+    border: 1px solid black;
+    background-color: white;
+    border-radius: 30px;
+    padding: 10px 24px;
+    letter-spacing: 1px;
+    font-weight: 400;
+}
+
 .type-of-work p{
     color: #C0C0C8;
     font-size: 32px;
@@ -44,7 +61,8 @@
   /* Show checkboxes on hover */
   .custom-label:hover .custom-checkbox {
     display: inline-block;
-    -webkit-appearance:none;
+    -webkit-appearance: none;
+    appearance: none;
     width: 15px;
     height: 15px;
     margin-right: 3px;
@@ -58,6 +76,7 @@
   .custom-checkbox:checked {
     display: inline-block;
     -webkit-appearance: none;
+    appearance: none;
     width: 15px;
     height: 15px;
     margin-right: 3px;
@@ -77,51 +96,88 @@
   .custom-checkbox:checked, .custom-label:hover .custom-checkbox {
     transition: opacity 0.5s ease; /* Add transition for opacity */
 }
+
 .industry p{
+    font-family: var(--header-font);
     color: #C0C0C8;
     font-size: 32px;
+    padding: 0;
 }
+
 .project{
 
     display: grid;
     border-top: 1px solid black;
-    padding: 20px;
-    grid-template-columns: 200px 200px 200px 200px 0fr;
-    grid-column-gap: 200px;
+    padding: 20px 30px; 
+    grid-template-columns: repeat(4, 200px);
+    grid-column-gap: calc(100% / 15);
     cursor: pointer;
-  
 }
+
 .project p{
     font-size: 24px;
 }
+
 .project a{
     font-size: 24px;
 }
+
 .project:hover{
     background-color: black;
     color: white;
 }
+
 .project:hover a{
     background-color: black;
     color: white;
     font-weight: 700;   
 }
+
 .projects{
     border-bottom: 1px solid black;
+    margin-bottom: 150px;
     
 }
+
+.bx{
+    float: right;
+    font-size: 30px;
+    font-weight: 200 !important;
+    line-height: 26px !important;
+}
+
+.clear{
+    position: absolute;
+    left: 742px;
+}
+
 .imageList::-webkit-scrollbar {
     width: 12px;
+    border: none;
+    border-radius: 0;
 }
 .imageList::-webkit-scrollbar-thumb {
-    border-radius: 6px;
     border: none; 
+    border-radius: 0;
 }
+.imageList::-webkit-scrollbar-track {
+    background: #fff; 
+    border: none; 
+    border-radius: 0;
+}
+
 .imageList::-webkit-scrollbar-button {
     width: 0;
     height: 0;
     display: none;
+    border-radius: 0;
 }
+
+.imageList:hover::-webkit-scrollbar-track {
+    background-color: #fff; /* Track color on hover */
+    border-radius: 0;
+}
+
 .imageList {
     scrollbar-width: thin; /* "thin" or "auto" */
     scrollbar-color: #fff #fff;
@@ -131,7 +187,7 @@
     cursor: ew-resize;
 }
 .imageList:hover {
-    scrollbar-color: #000 #fff;; /* thumb color, track color */
+    scrollbar-color: #000 #fff; /* thumb color, track color */
 }
 
 .media-item {
@@ -145,39 +201,42 @@
     object-fit: cover;
 }
 
-
-
-.image{
-    margin: 10px;
-}
 .image{
     height: 200px;
     width: auto;
     overflow: hidden;
+    margin: 10px;
 }
+
 /* PROJECT PAGE */
+
 .image img{
     
     width: 100%;
     height: 100%;
     object-fit: cover;
 }
+
 .image video{
     width: 100%;
     height: 100%;
     object-fit: cover;
 }
+
 .project-title{
     font-size: 100px;
 }
+
 .project-thumbnail{
     width: 500px;
     height: 500px;
     overflow: hidden;
 }
+
 .hover-image img{
     display: none;
 }
+
 .project-thumbnail:hover .hover-image img{
     display: block;
 }
@@ -186,12 +245,14 @@
 .project-thumbnail:hover .thumbnail-image {
     display: none;
 }
+
 .gallery{
     width: 200px;
     height: 200px;
     display: flex;
     gap: 50px;
 }
+
 .gallery-img{
     display: flex;
     gap: 50px;
@@ -200,16 +261,20 @@
 /* NewProject Page */
 .new-project{
     margin-top: 100px;
+    margin-bottom: 100px;
 }
+
 .form-row{
     display: flex;
     justify-content: space-between;
     gap: 30px;
 }
+
 .btn-file {
     position: relative;
     overflow: hidden;
 }
+
 .btn-file input[type=file] {
     position: absolute;
     top: 0;
@@ -230,19 +295,14 @@
     width: 200px;
     margin: 20px;
 }
+
 .currentImages{
     display: flex;
     flex-direction: row;
     gap: 10px;
     overflow-x: scroll;
 }
+
 .del-btn{
     margin: 10px;
-}
-.clear button {
-    font-family: var(--header-font);
-    font-size: 25px;
-    cursor: pointer;
-    position: absolute;
-    right: 120px;
 }

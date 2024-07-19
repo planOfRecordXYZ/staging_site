@@ -67,8 +67,10 @@ body {
 	color: var(--primary-font-color);
     overflow-x: hidden;
     position: relative; 
+    max-width: 100%;
 /*	cursor:url('./assets/cursor.png'), auto;*/
 }
+
 .basketball {
     height: 32px;
     width: 32px;
@@ -111,19 +113,49 @@ header ul li a {
 }
 header ul {
     list-style: none;
-  padding: 27px 4%;
-  margin: 0;
-  display: flex;
-  gap: 50px;
+    padding: 27px 4%;
+    margin: 0;
+    display: flex;
+    gap: 50px;
 }
 header ul.desktop-only {
+    padding: 30px; /* Added padding to admin nav */
 	position: fixed;
     top: 0;
-  background: white;
-  z-index: 100;
-  width: 100%;
+    background: white;
+    z-index: 100;
+    width: 100%;
 }
 
+ /* Set nav items hover and active effects */
+
+header ul li a.active-link {
+    color: var(--link-hover);
+}
+
+header ul li a:hover{
+    color: var(--secondary-font-color);
+}
+
+/* Fade in on all page sections */
+
+section,
+.projects-body {
+    animation: fadeIn ease 1.2s;
+}
+
+.projects-body {
+    padding-top: 264px;
+}
+
+@keyframes fadeIn{
+   0%{
+       opacity: 0;
+   }
+   100%{
+       opacity: 1;
+   }
+}
 
 /*HOME PAGE*/
 .homepage {
@@ -139,9 +171,19 @@ header ul.desktop-only {
     width: 100%;
     height: 100%;
     z-index: 1;
+    overflow: hidden; /* restricting to view the overflown text */
     /* pointer-events: none; Ensures text does not interfere with interaction */
 }
-.background-text .plan,
+.background-text .plan{
+    position: absolute;
+    font-size: 500px;    
+    white-space: nowrap;
+    font-family: var(--header-font);
+	letter-spacing: -40px;
+    cursor: default;
+    display: inline-block;
+}
+
 .background-text .of,
 .background-text .record {
     position: absolute;
@@ -157,8 +199,9 @@ header ul.desktop-only {
 .hover-effect {
     display: inline-block;
     transition: transform 0.3s ease-in-out;
-    width: 0.9ch;
+    width: 0.82ch;
 }
+
 .hover-effect:hover{
    
     /* OT Features */
@@ -170,21 +213,21 @@ header ul.desktop-only {
     z-index: 2;
 }
 
-
 .background-text .plan {
-    top: -5vh; /* Adjusted for responsiveness */
-    right: -5vw; /* Adjusted for responsiveness */
+    top: calc(100% - 99%); /* Adjusted for responsiveness */
+    right: -3vw; /* Adjusted for responsiveness */
 }
 
 .background-text .of {
-    top: 205vh; /* Adjusted for responsiveness */
+    top: calc(100% - 65%); /* Adjusted for responsiveness */
     left: -10vw; /* Adjusted for responsiveness */
 }
 
 .background-text .record {
-    top: 400vh; /* Adjusted for responsiveness */
+    top: calc(100% - 35%); /* Adjusted for responsiveness */
     right: -40vw; /* Adjusted for responsiveness */
 }
+
 .project-image img{
     
     width: 100%;
@@ -215,17 +258,73 @@ header ul.desktop-only {
     line-height: var(--header-line-height);
 	letter-spacing: var(--header-letter-spacing);
 }
+
+/* 
 .buttons{
     margin-top: 10px;
     display: flex;
     gap: 10px;
 }
+
 button{
     border: 1px solid black;
     background-color: white;
     border-radius: 20px;
     padding: 5px;
 }
+
+button:hover{
+    color: white;
+    background-color: black;
+    
+} */
+ 
+.buttons {
+    position: fixed;
+    top: 20px;
+    right: 12px;
+    z-index: 200;
+    display: flex;
+    gap: 10px;
+}
+
+button {
+    position: relative;
+    overflow: hidden;
+    border: 1px solid black;
+    background-color: white;
+    border-radius: 20px;
+    padding: 10px 24px;
+    color: black;
+    font-family: var(--header-font);
+    font-size: 16px;
+    transition: color 0.2s ease; /* transition for text color */
+}
+
+button::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 0;
+    height: 100%;
+    background-color: black;
+    z-index: -1; 
+    transition: width 0.2s ease; /* transition for background width */
+}
+
+/* Expand the background to cover the entire button */
+button:hover::before {
+    width: 100%; 
+}
+
+/* Change text color on hover */
+button:hover {
+    color: white; 
+    z-index: 1; 
+}
+
+
 /* ROW-1 */
 .intro-block{
     display: flex;
@@ -236,6 +335,7 @@ button{
     z-index: 2;
     top: 300px; /* Adjust this value to move the block down */
     pointer-events: none;
+    overflow: hidden; /* restricting to view the overflown images */
    
 }
 .PoR-intro{
@@ -325,19 +425,43 @@ footer{
  
 }
 .contact-info{
+    margin-top: 200px;
     display: flex;
     justify-content: space-between;
 }
+
+.inquiry{
+    font-size: 24px;
+}
+
 .enquiry{
     padding-bottom: 20px;
+    color: var(--secondary-font-color);
+    
 }
 .socials{
+    padding-top: 24px;
     display: flex;
     gap: 30px;
+    z-index: 1;
 }
+
+.socials a {
+    text-decoration: none;
+    color: var(--primary-font-color);
+    font-family: var(--main-font);
+}
+
+.socials a:hover {
+    color: var(--secondary-font-color) !important;
+}
+
 .copyright{
-    padding-top: 25px;
+    padding-top: 80px;
+    font-size: 16px;
 }
+
+/* PROJECST PAGE - INDEX */
 
 .project-details{
     padding: 20px;
@@ -345,7 +469,9 @@ footer{
     justify-content: space-between;
     align-items: center;
 }
+
 .project-header h1{
+    margin-bottom: 30px;
     color: #C0C0C8;
     font-family: var(--header-font);
     font-size: var(--header-font-size); 
@@ -359,12 +485,13 @@ footer{
     font-family: var(--main-font);
     font-size: var(--main-font-size-2);
 }
+
 .project-description{
     width: 700px;
     font-size: 24px;
 }
 .project-desc{
-    padding-top: 20px;
+    padding-top: 12px;
 }
 .project-layout {
     width: 100%;
@@ -435,9 +562,69 @@ footer{
     height: 100%;
     object-fit: contain;
 }
-.buttons {
+/* .buttons {
     position: fixed;
     top: 20px;
     right: 12px;
     z-index: 200;
+} */
+
+/* Media queries for responsive design */
+
+/* Adjust for larger screens */
+/* 
+@media (min-width: 1440px) {
+    .background-text .plan {
+        top: calc(-5vh + 10vh);
+    }
+    .background-text .of {
+        top: 205vh ;
+        left: calc(-10vw + 10vw);
+    }
+    .background-text .record {
+        top: 370vh;
+    }
 }
+
+@media (max-width: 1200px) {
+    .background-text .plan {
+        top: -5vh; 
+        right: -5vw;
+    }
+    
+    .background-text .of {
+        top: 205vh; 
+        left: -10vw; 
+    }
+    
+    .background-text .record {
+        top: 370vh;
+        right: -65vw;
+    }
+}
+
+@media (max-width: 1024px) {
+    .background-text .plan {
+        top: -3vh;
+    }
+    .background-text .of {
+        top: 205vh;
+    }
+    .background-text .record {
+        top: 370vh;
+        right: -65vw;
+    }
+}
+
+@media (max-width: 992px) {
+    .background-text .plan {
+        top: -3vh;
+    }
+    .background-text .of {
+        top: calc(195vh - 72vh);
+    }
+    .background-text .record {
+        top: calc(360vh - 136vh);
+        right: -65vw;
+    }
+} */

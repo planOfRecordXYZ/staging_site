@@ -2,7 +2,7 @@
 <footer>
         <div class="contact-info">
             <div class="inquiry">
-                <p class="enquiry" style="padding-bottom:8px">General Inquiries</p>
+                <p class="enquiry" style="padding-bottom:8px">Inquiries</p>
                 <p>info@planofrecord.xyz</p>
             </div>
             <div class="socials">
@@ -11,4 +11,11 @@
             </div>
         </div>
         <p class="copyright">© Plan of Record 2024</p>
-    </footer>
+  
+</footer>
+
+<style>
+    .socials a:hover {
+         color: var(--secondary-font-color) !important;
+     }
+</style>

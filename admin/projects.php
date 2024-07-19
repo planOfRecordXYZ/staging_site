@@ -7,21 +7,28 @@
         <link rel="icon" type="image/x-icon" href="../assets/favicon_io/favicon.ico">
         <link rel="stylesheet" href="../css/style.css">
         <link rel="stylesheet" href="../css/projectstyle.css">
+        <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
         <script src="../main.js"></script>
         <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-        <style>
-            .clear button{
-                font-family: var(--header-font);
-                font-size: 30px;
-                cursor: pointer;
-                position: absolute;
-                right: 120px;
-            }
-        </style>
     </head>
+    <style>
+        .project {
+            grid-template-columns: 150px 150px 150px 150px 0fr;
+        }
+    </style>
     <body>
         <div class="basketball desktop-only"><img src="../assets/cursor.png" alt="" x></div>
-        <?php include('../reusable/adminNav.php');
+        <?php 
+
+        session_start();
+
+        // Redirect to login page if not logged in
+        if (!isset($_SESSION['admin_logged_in']) || $_SESSION['admin_logged_in'] !== true) {
+            header('Location: login.php');
+            exit;
+        }
+        
+        include('../reusable/adminNav.php');
         // Establish database connection
         include('../includes/connect.php');?>
 
@@ -116,7 +123,7 @@
                     ?>
                 </div>
                 <div class="clear">
-                <button type="submit" name="clearBtn" class="btn btn-button clearBtn" onclick="clearCheckboxes()">Clear</button>
+                <button type="submit" name="clearBtn" class="btn btn-button clearBtn" onclick="clearCheckboxes()">CLEAR</button>
                 </div>
             </div>
             
@@ -144,7 +151,8 @@
                             <p class="brand">'.$project['client'].'</p>
                             <p class="industry">'.$project['industry'].'</p>
                             <p class="towork">'.$project['type_of_work'].'</p>
-                            <a href="project.php?project_id=' . $project['project_id'] . '">Case Study <img src="/icons/Vector.png" alt="arrow" width="20px" style="margin-left:5px;"></a>
+                            <p><a style="float:left;" href="project.php?project_id=' . $project['project_id'] . '">Case Study <i class="bx bx-right-arrow-alt"></i></a></p>
+                            <p><a href="deleteconfirm.php?project_id='. $project['project_id'].'"><i class="bx bx-trash icon-toggle" style="font-size:24px; color:#D22B2B;"></i></a></p>
                         </div>
                         <div class="imageList">
                             ';
@@ -152,8 +160,25 @@
                             $image_query = "SELECT * FROM images WHERE project_id =" . $project['project_id'];
                             $images = mysqli_query($connect, $image_query);
                             if ($images) {
-                                echo '<div class="media-list">';
+
+
+                                $thumbnails = [];
+                                $otherImages = [];
+                
+                                // Separate the thumbnail from other images
                                 foreach ($images as $image) {
+                                    if ($image['type'] == 'Thumbnail') {
+                                        $thumbnails[] = $image;
+                                    } else {
+                                        $otherImages[] = $image;
+                                    }
+                                }
+                
+                                // Merge the thumbnail at the front of other images
+                                $sortedImages = array_merge($thumbnails, $otherImages);
+                
+                                echo '<div class="media-list">';
+                                foreach ($sortedImages as $image) {
                                     $fileExtension = strtolower(pathinfo($image['image_url'], PATHINFO_EXTENSION));
                                     if (in_array($fileExtension, ['jpg', 'jpeg', 'png', 'gif'])) {
                                         // Display image
@@ -161,7 +186,7 @@
                                             <div class="media-item image project-image">
                                                 <img class="projectImage" src="../uploads/' . $image['image_url'] . '" alt="image">
                                             </div>';
-                                    } elseif (in_array($fileExtension, ['mp4', 'webm', 'ogg'])) {
+                                    } elseif (in_array($fileExtension, ['mp4', 'webm', 'ogg', 'mov'])) {
                                         // Display video
                                         echo '
                                             <div class="media-item image project-video">
@@ -233,10 +258,12 @@
         });
             $(".project").click(function(){
                 var imageList = $(this).next(".imageList");
+               
                 // Check if the clicked project is already active
                 if (imageList.is(":visible")) {
                     // If it's active, slide up the imageList
                     imageList.slideUp(500);
+                      
                 } else {
                     // If it's not active, slide up all other imageLists and toggle the clicked one
                     $('.imageList').slideUp(500);
