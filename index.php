@@ -16,7 +16,13 @@
     
     <!-- Linking external CSS files -->
     <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="./css/mobile.css">
 </head>
+<style>
+    .socials a:hover {
+         color: var(--secondary-font-color) !important;
+     }
+</style>
 <body>
     <!-- Decorative image displayed only on desktop -->
     <div class="basketball desktop-only">
@@ -25,6 +31,19 @@
     
     <!-- Including navigation bar from an external PHP file -->
     <?php include('reusable/nav.php');?>
+    <section class="mobile-menu mobile-only closed">
+		<ul class="mobile-only">
+			<li><a href="./index.php">Plan of Record</a></li>
+			<li id="closeToggle" class="menu-toggle"><a href="#"><img src="./assets/close.png" alt=""></a></li>
+		</ul>
+		<ul class="mobile-navitems">
+			<li><a href="./index.php">Home</a></li>
+			<li><a href="./projects.php">Index</a></li>
+			<li><a href="./about.php">About</a></li>
+			<li><a href="./approach.php">Approach</a></li>
+			<li><a href="./contactUs.php">Contact</a></li>
+		</ul>
+	</section>
 
     <!-- Main content section of the homepage -->
     <section class="homepage">
@@ -37,6 +56,12 @@
 
         <!-- Introductory block with text and images -->
         <div class="intro-block">
+            <!-- Introductory Video For Mobile Only -->
+             <div class="intro-video project-image mobile-only">
+             <a href="#">
+                <video muted autoplay loop src="assets/PoR_Reel.mp4"></video>
+            </a>
+             </div>
             <!-- Introductory paragraph about the design studio -->
             <p class="PoR-intro">Plan of Record is a Toronto-based design studio specializing in brand identity and experiences. </p>
             
@@ -71,7 +96,7 @@
 
             <!-- Second row of projects and designs -->
             <div class="row-2">
-                <div class="design-1">
+                <div class="design-1 mobile-project1">
                     <div class="project-image project-2">
                         <img src="./assets/screen.png" alt="design1">
                     </div>
@@ -80,11 +105,11 @@
                         <p class="description">Empowering confidence for women with eczema</p>
                     </div>
                 </div>
-                <div class="design-1">
+                <div class="design-1 project3-mobile">
                     <div class="project-image project-3">
                         <img src="./assets/screen.png" alt="design1">
                     </div>
-                    <div class="project-desc">
+                    <div class="project-desc desc3-mobile">
                         <p>Dommary Farms</p>
                         <p class="description">Branding a sustainable micro-farming community</p>
                     </div>
@@ -103,7 +128,7 @@
 
             <!-- Third row of projects -->
             <div class="row-3">
-                <div class="design-1">
+                <div class="design-1 design3-mobile">
                     <div class="project-image project-4">
                         <img src="./assets/NOW.png" alt="design1">
                     </div>
@@ -121,7 +146,7 @@
 
             <!-- Fourth row of projects -->
             <div class="row-4">
-                <div class="design-1">
+                <div class="design-1 design4-mobile">
                     <div class="project-image project-6">
                         <video muted loop autoplay src="assets/Amoeba.mp4"></video>
                     </div>

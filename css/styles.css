@@ -163,6 +163,7 @@
  }
  
  header ul.desktop-only {
+    padding: 30px; /* Added padding to admin nav */
      position: fixed;
    background: white;
    z-index: 100;
@@ -183,7 +184,7 @@
  
  header ul.mobile-only li:last-of-type {
      margin-right: 0;
-     font-size: 14px;
+     font-size: 16px;
      line-height: 20px;
  }
  
@@ -206,6 +207,17 @@
      color: var(--primary-font-color);
      padding: 24px 0;
  }
+
+ /* Set nav items hover and active effects */
+
+ header ul li a.active-link {
+    color: var(--link-hover); /* Set the active link color to blue */
+}
+
+header ul li a:hover{
+    color: var(--secondary-font-color);
+}
+
  
  section.homepage {
    min-height: calc(100vh - 156px);
@@ -223,50 +235,43 @@
     line-height:20px;
  
 }
+
+.inquiry{
+    font-size: 24px;
+}
+
+.enquiry{
+    padding-bottom: 20px;
+    color: var(--secondary-font-color);
+    
+}
+
 .contact-info{
+    margin-top: 200px;
     display: flex;
     justify-content: space-between;
 }
 .socials{
+    padding-top: 24px;
     display: flex;
     gap: 30px;
 }
- .copyright{
-    margin-top: 25px;
- }
-  /* footer .left p {
-    font-size: 14px;
-    letter-spacing: .025em;
-    line-height: 18px;
+
+.socials a {
+    text-decoration: none;
+    color: var(--primary-font-color);
+    font-family: var(--main-font);
 }
- footer .right p {
-   max-width: 408px;
-   margin-bottom: 96px;
-   font-size: var(--regular-font-size);
-     line-height: var(--regular-line-height);
+
+.socials a:hover {
+    color: var(--secondary-font-color) !important;
+}
+
+ .copyright{
+    margin-top: 80px;
+    font-size: 16px;
  }
- 
- footer ul {
-     list-style: none;
-   margin: 0;
-   padding: 0;
-   display: flex;
- }
- 
- footer ul li {
-     margin-right: 48px;
- }
- 
- footer ul li:last-of-type {
-     margin-right: 0;
- }
- 
- footer ul li a {
-     text-decoration: none;
-     color: var(--primary-font-color);
-     padding: 28px 0;
- }
-  */
+  
  /*HOME PAGE*/
  
  span.plan, span.of, span.record {
@@ -448,8 +453,12 @@
      background: black;
      color: white;
      padding: 64px 0 83px 0;
-   margin-left: -4%;
-   margin-right: -4%;
+    margin-left: -4%;
+    margin-right: -4%;
+ }
+
+ .about-workwithus br{
+    display: none;
  }
  
  .about-workwithus .three-column  {
@@ -545,6 +554,11 @@
      color: var(--secondary-font-color);
      margin-bottom: 24px;
  }
+
+ .with-respect{
+    padding: 10px 4%;
+    width: 40%;
+ }
  
  /*CONTACT PAGE*/
  
@@ -632,17 +646,40 @@
      width: 100%;
      display: flex;
      justify-content: flex-start;
+     animation: fadeIn ease 3s;
  }
- 
- .contactform form input[type="submit"] {
-     border-radius: 30px;
-     border: 2px solid black;
-     color: black;
-     background: white;
-     width: unset;
-     padding: 8px 34px;
-     cursor: pointer;
+
+ @keyframes fadeIn{
+    0%{
+        opacity: 0;
+    }
+    100%{
+        opacity: 1;
+    }
  }
+
+.contactform form input[type="submit"] {
+    width: unset;
+    position: relative;
+    overflow: hidden;
+    display: inline-block;
+    padding: 10px 24px;
+    font-size: 16px;
+    color: black;
+    background-color: white;
+    border: 2px solid black;
+    border-radius: 30px;
+    cursor: pointer;
+    transition: color 0.2s ease, background-position 0.2s ease; 
+    background-size: 200% 100%; /* Double width to cover from left to right */
+    background-position: 100% 0; /* Start offscreen to the left */
+}
+
+.contactform form input[type="submit"]:hover {
+    background-image: linear-gradient(to left, white 50%, black 50%);;
+    color: white; 
+    background-position: 0 100%; /* Slide background to the right on hover */
+}
  
  .contactemail {
      max-width: 900px;

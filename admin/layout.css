@@ -74,7 +74,7 @@
     cursor: pointer;
 }
 .layout-header{
-    font-size: 70px;
+    font-size: 50px;
     text-align: center;
 }
 .header{
@@ -95,7 +95,7 @@ button:hover{
 
 }
 .layout-header{
-    font-size: 70px;
+    font-size: 50px;
     text-align: center;
 }
 .header{
@@ -190,58 +190,61 @@ button:hover{
 }
 
 #block1 {
-width: 295px;
-height: 120px;
-margin: 10px;
-padding: 10px;
-border: 1px solid #ccc;
-text-align: center;
-cursor: move;
-position: relative;
-}
-#block2 {
-width: 295px;
-height: 200px;
-margin: 10px;
-padding: 10px;
-border: 1px solid #ccc;
-text-align: center;
-cursor: move;
-position: relative;
-}
-
-#block3 {
-width: 143px;
-height: 200px;
-margin: 10px;
-padding: 10px;
-border: 1px solid #ccc;
-text-align: center;
-cursor: move;
-position: relative;
-}
-
-#block4 {
-width: 142px;
-height: 96px;
-margin: 10px;
-padding: 10px;
-border: 1px solid #ccc;
-text-align: center;
-cursor: move;
-position: relative;
-}
-
-#block5 {
-    width: 256px;
-    height: 144px;
-    margin: 10px;
-    padding: 10px;
+    width: 200px; /* Reduced from 295px */
+    height: 81px; /* Reduced from 120px */
+    margin: 7px; /* Reduced from 10px */
+    padding: 7px; /* Reduced from 10px */
     border: 1px solid #ccc;
     text-align: center;
     cursor: move;
     position: relative;
-    }
+}
+
+#block2 {
+    width: 200px; /* Reduced from 295px */
+    height: 135px; /* Reduced from 200px */
+    margin: 7px; /* Reduced from 10px */
+    padding: 7px; /* Reduced from 10px */
+    border: 1px solid #ccc;
+    text-align: center;
+    cursor: move;
+    position: relative;
+}
+
+#block3 {
+    width: 97px; /* Reduced from 143px */
+    height: 135px; /* Reduced from 200px */
+    margin: 7px; /* Reduced from 10px */
+    padding: 7px; /* Reduced from 10px */
+    border: 1px solid #ccc;
+    text-align: center;
+    cursor: move;
+    position: relative;
+}
+
+#block4 {
+    width: 96px; /* Reduced from 142px */
+    height: 65px; /* Reduced from 96px */
+    margin: 7px; /* Reduced from 10px */
+    padding: 7px; /* Reduced from 10px */
+    border: 1px solid #ccc;
+    text-align: center;
+    cursor: move;
+    position: relative;
+}
+
+#block5 {
+    width: 173px; /* Reduced from 256px */
+    height: 97px; /* Reduced from 144px */
+    margin: 7px; /* Reduced from 10px */
+    padding: 7px; /* Reduced from 10px */
+    border: 1px solid #ccc;
+    text-align: center;
+    cursor: move;
+    position: relative;
+}
+
+
 /* Adjust size for block1 in the layout-container */
 .layout-block#block1 {
 max-width: 1478px;
@@ -316,7 +319,7 @@ height: 480px;
     cursor: pointer;
 }
 .layout-header{
-    font-size: 70px;
+    font-size: 50px;
     text-align: center;
 }
 .header{
@@ -346,7 +349,7 @@ button:hover{
 }
 .non-fixed {
     text-align: center;
-    margin-top: 470px;
+    margin-top: 430px;
     margin-bottom: 10px;
 }
 .non-fixed-2{

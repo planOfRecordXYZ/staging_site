@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Layout Configuration</title>
+    <title>Plan of Record</title>
     <link rel="stylesheet" href="../css/style.css">
     <link rel="stylesheet" href="../css/projectstyle.css">
     <link rel="stylesheet" href="layout.css">
@@ -112,7 +112,7 @@
         }
         .non-fixed {
             text-align: center;
-            margin-top: 470px;
+            margin-top: 400px;
             margin-bottom: 10px;
         }
         .non-fixed-2{
@@ -129,6 +129,15 @@
 <body>
     <!-- Fetch project details from the database -->
     <?php
+
+    session_start();
+
+    // Redirect to login page if not logged in
+    if (!isset($_SESSION['admin_logged_in']) || $_SESSION['admin_logged_in'] !== true) {
+        header('Location: login.php');
+        exit;
+    }
+
     $project_id = $_GET['project_id'];
     include ("../includes/connect.php");
     $query = "SELECT * FROM projects WHERE `project_id` = '$project_id'";

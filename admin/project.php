@@ -1,6 +1,15 @@
 <?php
+
 // Fetch the project ID from the URL parameters
 $project_id = $_GET['project_id'];
+
+session_start();
+
+// Redirect to login page if not logged in
+if (!isset($_SESSION['admin_logged_in']) || $_SESSION['admin_logged_in'] !== true) {
+    header('Location: login.php');
+    exit;
+}
 
 // Include the database connection script
 include("../includes/connect.php");
@@ -139,7 +148,7 @@ $medias = $media_assignments[0];
     <div class="basketball desktop-only"><img src="../assets/cursor.png" alt="" width="24px"></div>
     <?php include('../reusable/adminNav.php'); ?>
     <div class="buttons">
-        <a href="updateProject.php?project_id=<?php echo $project_id ?>"><button>Update</button></a>
+        <a href="updateProject.php?project_id=<?php echo $project_id ?>"><button>Edit</button></a>
         <a href="deleteconfirm.php?project_id=<?php echo $project_id ?>"><button>Delete</button></a>
     </div>
     <div class="thumbnail">
@@ -148,7 +157,7 @@ $medias = $media_assignments[0];
             $fileExtension = strtolower(pathinfo($thumbnail['image_url'], PATHINFO_EXTENSION));
             if (in_array($fileExtension, ['jpg', 'jpeg', 'png', 'gif'])) {
                 echo '<img src="..\uploads\\' . htmlspecialchars($thumbnail['image_url']) . '" alt="Thumbnail" width="100%">';
-            } elseif (in_array($fileExtension, ['mp4', 'webm', 'ogg'])) {
+            } elseif (in_array($fileExtension, ['mp4', 'webm', 'ogg', 'mov'])) {
                 echo '<video autoplay loop muted width="100%">';
                 echo '<source src="..\uploads\\' . htmlspecialchars($thumbnail['image_url']) . '" type="video/' . $fileExtension . '">';
                 echo 'Your browser does not support the video tag.';
@@ -187,11 +196,11 @@ $medias = $media_assignments[0];
                 echo '<div class="' . htmlspecialchars($block_id) . ' media">'; // Start block
                 // Iterate through each media item in the block
                 foreach ($medias[$i][$block_index] as $media) {
-                    $media_url = '/uploads/' . htmlspecialchars($media);
+                    $media_url = '../uploads/' . htmlspecialchars($media);
                     $media_type = pathinfo($media_url, PATHINFO_EXTENSION);
                     if (in_array($media_type, ['jpg', 'jpeg', 'png'])) {
                         echo '<img src="' . $media_url . '" alt="">';
-                    } elseif (in_array($media_type, ['mp4', 'webm', 'ogg'])) {
+                    } elseif (in_array($media_type, ['mp4', 'webm', 'ogg', 'mov'])) {
                         echo '<video muted autoplay loop>';
                         echo '<source src="' . $media_url . '" type="video/' . $media_type . '">';
                         echo 'Your browser does not support the video tag.';

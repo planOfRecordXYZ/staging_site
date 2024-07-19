@@ -42,6 +42,7 @@ if ($media_assignments === null) {
     echo "Error: Failed to decode media assignments.";
     exit;
 }
+
 //accessing the array with the media items
 $medias = $media_assignments[0];
 ?>
@@ -54,6 +55,7 @@ $medias = $media_assignments[0];
     <link rel="icon" type="image/x-icon" href="./assets/favicon_io/favicon.ico">
     <script src="./main.js"></script>
     <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="./css/mobile.css">
     <link rel="stylesheet" href="admin/layout.css">
     <style>
        
@@ -62,6 +64,20 @@ $medias = $media_assignments[0];
 <body>
     <div class="basketball desktop-only"><img src="./assets/cursor.png" alt="" width="24px"></div>
     <?php include('reusable/nav.php');?>
+
+    <section class="mobile-menu mobile-only closed">
+            <ul class="mobile-only">
+                <li><a href="./index.php">Plan of Record</a></li>
+                <li id="closeToggle" class="menu-toggle"><a href="#"><img src="./assets/close.png" alt=""></a></li>
+            </ul>
+            <ul class="mobile-navitems">
+                <li><a href="./index.php">Home</a></li>
+                <li><a href="./projects.php">Index</a></li>
+                <li><a href="./about.php">About</a></li>
+                <li><a href="./approach.php">Approach</a></li>
+                <li><a href="./contactUs.php">Contact</a></li>
+            </ul>
+        </section>
 
     <div class="thumbnail">
         <?php
@@ -73,12 +89,12 @@ $medias = $media_assignments[0];
 
             // Check if the file extension is an image type
             if (in_array($fileExtension, ['jpg', 'jpeg', 'png', 'gif'])) {
-                echo '<img src="..\uploads\\' . htmlspecialchars($thumbnail['image_url']) . '" alt="Thumbnail" width="100%">';
+                echo '<img src="./uploads/' . htmlspecialchars($thumbnail['image_url']) . '" alt="Thumbnail" width="100%">';
             }
             // Check if the file extension is a video type
-            elseif (in_array($fileExtension, ['mp4', 'webm', 'ogg'])) {
+            elseif (in_array($fileExtension, ['mp4', 'webm', 'ogg', 'mov'])) {
                 echo '<video autoplay loop muted width="100%">';
-                echo '<source src="..\uploads\\' . htmlspecialchars($thumbnail['image_url']) . '" type="video/' . $fileExtension . '">';
+                echo '<source src="./uploads/' . htmlspecialchars($thumbnail['image_url']) . '" type="video/' . $fileExtension . '">';
                 echo 'Your browser does not support the video tag.';
                 echo '</video>';
             } else {
@@ -123,12 +139,12 @@ $medias = $media_assignments[0];
                
                     // Iterate through each media assignment for the current block
                     foreach ($medias[$i][$block_index] as $media) {
-                        $media_url = '/uploads/' . htmlspecialchars($media);
+                        $media_url = './uploads/' . htmlspecialchars($media);
                         $media_type = pathinfo($media_url, PATHINFO_EXTENSION);
                         if (in_array($media_type, ['jpg', 'jpeg', 'png'])) {
                             // Display image
                             echo '<img src="' . $media_url . '" alt="">';
-                        } elseif (in_array($media_type, ['mp4', 'webm', 'ogg'])) {
+                        } elseif (in_array($media_type, ['mp4', 'webm', 'ogg', 'mov'])) {
                             // Display video
                             echo '<video muted autoplay loop>';
                             echo '<source src="' . $media_url . '" type="video/' . $media_type . '">';
@@ -146,5 +162,7 @@ $medias = $media_assignments[0];
         }
         ?>
     </div> <!-- End project-layout -->
+
+    <?php include('reusable/footer.php'); ?>
 </body>
 </html>

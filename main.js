@@ -1,14 +1,30 @@
 
 document.addEventListener("DOMContentLoaded", () => {
-	console.log('we made it🎉');
+	// console.log('we made it🎉');
 
-	window.setTimeout(function() {
-		document.querySelector('.fade-overlay').classList.add('faded')
-	  }, 230);
+	// window.setTimeout(function() {
+	// 	document.querySelector('.fade-overlay').classList.add('faded')
+	//   }, 230);
 	
-	  window.setTimeout(function() {
-		document.querySelector('iframe').style.transform = 'scale(1)'
-	  }, 1000);
+	//   window.setTimeout(function() {
+	// 	document.querySelector('iframe').style.transform = 'scale(1)'
+	//   }, 1000);
+
+	 // Check if the fade-overlay element exists before adding the faded class
+	 const fadeOverlay = document.querySelector('.fade-overlay');
+	 if (fadeOverlay) {
+		 window.setTimeout(function() {
+			 fadeOverlay.classList.add('faded');
+		 }, 230);
+	 }
+ 
+	 // Check if the iframe element exists before setting the style
+	 const iframe = document.querySelector('iframe');
+	 if (iframe) {
+		 window.setTimeout(function() {
+			 iframe.style.transform = 'scale(1)';
+		 }, 1000);
+	 }
 
 // Hover effect for background text in homepage
 // Select all elements with the class 'hover-effect'
@@ -44,12 +60,33 @@ hoverElements.forEach(element => {
 	const mobileMenu = document.querySelector('.mobile-menu');
 	const menuToggle = document.getElementById('menuToggle');
 
-	closeButton.addEventListener('click', function(){
-		mobileMenu.classList.add('closed');
-	})
+	// closeButton.addEventListener('click', function(){
+	// 	mobileMenu.classList.add('closed');
+	// })
 
-	menuToggle.addEventListener('click', function(){
-		mobileMenu.classList.remove('closed');
-	})
+	// Check if closeButton exists before adding the event listener
+    if (closeButton) {
+        closeButton.addEventListener('click', function(){
+            if (mobileMenu) {
+                mobileMenu.classList.add('closed');
+            }
+        });
+    } else {
+        console.warn("Element with ID 'closeToggle' not found on this page");
+    }
+
+	// menuToggle.addEventListener('click', function(){
+	// 	mobileMenu.classList.remove('closed');
+	// })
+
+	if (menuToggle) {
+        menuToggle.addEventListener('click', function(){
+            if (mobileMenu) {
+                mobileMenu.classList.remove('closed');
+            }
+        });
+    } else {
+        console.warn("Element with ID 'menuToggle' not found on this page");
+    }
 })
 

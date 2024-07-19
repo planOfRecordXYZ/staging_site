@@ -66,19 +66,19 @@
             <li><a href="./index.php">Plan of Record</a></li>
             <li id="closeToggle" class="menu-toggle"><a href="#"><img src="./assets/close.png" alt=""></a></li>
         </ul>
-        <ul>
-            <li><a href="./index.php">Plan of Record</a></li>
+        <ul class="mobile-navitems">
+            <li><a href="./index.php">Home</a></li>
             <li><a href="./projects.php">Index</a></li>
-			<li><a href="./about.html">About</a></li>
-			<li><a href="./approach.html">Approach</a></li>
-			<li><a href="./contactUs.html">Contact</a></li>
+			<li><a href="./about.php">About</a></li>
+			<li><a href="./approach.php">Approach</a></li>
+			<li><a href="./contactUs.php">Contact</a></li>
         </ul>
     </section>
 
     <section class="contactpage">
         <div class="fade-overlay"></div>
         <div class="three-column">
-            <div class="about-title">
+            <div class="contact-title">
                 <h2>Say Hi</h2>
             </div>
             <div class="contactform grid-span-2">
@@ -101,12 +101,12 @@
                         </fieldset>
                     </div>
                     <div class="form-submit">
-                        <input type="submit" value="Submit">
+                        <input type="submit" value="SUBMIT">
                     </div>
                 </form>
             </div>
         </div>
-        <div class="three-column">
+        <!-- <div class="three-column" style="margin-bottom: 360px;">
             <div></div>
             <div class="contactemail">
                 <p class="secondary-title">Contact</p>
@@ -114,11 +114,12 @@
                     <p class="secondary-title"><a href="mailto:info@planofrecord.xyz" target="_blank">info@planofrecord.xyz</a></p>
                 </div>
             </div>
-        </div>
+        </div> -->
     </section>
 
     <?php include('reusable/footer.php'); ?>
     <script>
+        
         document.addEventListener('DOMContentLoaded', function() {
             const menuToggle = document.querySelector('#menuToggle');
             const mobileMenu = document.querySelector('.mobile-menu');

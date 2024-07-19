@@ -22,11 +22,11 @@
 
 	<section class="mobile-menu mobile-only closed">
 		<ul class="mobile-only">
-			<li><a href="./index.html">Plan of Record</a></li>
+			<li><a href="./index.php">Plan of Record</a></li>
 			<li id="closeToggle" class="menu-toggle"><a href="#"><img src="./assets/close.png" alt=""></a></li>
 		</ul>
-		<ul>
-			<li><a href="./index.php">Plan of Record</a></li>
+		<ul class="mobile-navitems">
+			<li><a href="./index.php">Home</a></li>
 			<li><a href="./projects.php">Index</a></li>
 			<li><a href="./about.php">About</a></li>
 			<li><a href="./approach.php">Approach</a></li>
@@ -206,7 +206,7 @@
   				<p class="secondary-title">Work with us</p>
   			</div>
   			<div class="grid-span-2">
-  				<p>We're always looking for talented collaborators. If our approach appeals to you, please get in touch.</p>
+  				<p>We're always looking for talented collaborators. <br>If our approach appeals to you, please get in touch.</p>
   				<!-- <p class="small">Whether you’re a strategist, project manager, motion designer, AR/VR expert, type designer, creative coder, art history nerd, or something else we’ve never heard of yet, please send us a concise introductory email.</p> -->
   				<p class="small-header">Positions Available</p>
   				<p class="small-title">DESIGN INTERN</p>
@@ -225,7 +225,7 @@
 	<script>
     document.addEventListener("DOMContentLoaded", () => {
       window.setTimeout(function() {
-      	console.log('overlay add fade')
+      	// console.log('overlay add fade')
         document.querySelector('.fade-overlay').classList.add('faded')
       }, 230);
     });
