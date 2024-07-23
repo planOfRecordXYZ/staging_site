@@ -72,7 +72,7 @@ hoverElements.forEach(element => {
             }
         });
     } else {
-        console.warn("Element with ID 'closeToggle' not found on this page");
+        // console.warn("Element with ID 'closeToggle' not found on this page");
     }
 
 	// menuToggle.addEventListener('click', function(){
@@ -86,7 +86,7 @@ hoverElements.forEach(element => {
             }
         });
     } else {
-        console.warn("Element with ID 'menuToggle' not found on this page");
+        // console.warn("Element with ID 'menuToggle' not found on this page");
     }
 })
 

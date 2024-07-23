@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.1.2
+-- version 5.2.0
 -- https://www.phpmyadmin.net/
 --
--- Host: localhost:3306
--- Generation Time: Jun 13, 2024 at 02:20 PM
--- Server version: 5.7.24
--- PHP Version: 8.1.0
+-- Host: localhost:8889
+-- Generation Time: Jul 23, 2024 at 05:16 PM
+-- Server version: 5.7.39
+-- PHP Version: 7.4.33
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -20,6 +20,30 @@ SET time_zone = "+00:00";
 --
 -- Database: `planofrecord`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `admin_users`
+--
+
+CREATE TABLE `admin_users` (
+  `id` int(11) NOT NULL,
+  `username` varchar(255) NOT NULL,
+  `email` varchar(255) NOT NULL,
+  `password` varchar(255) NOT NULL,
+  `password_hashed_token` varchar(255) DEFAULT NULL,
+  `token_expires_at` datetime DEFAULT NULL,
+  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `admin_users`
+--
+
+INSERT INTO `admin_users` (`id`, `username`, `email`, `password`, `password_hashed_token`, `token_expires_at`, `created_at`) VALUES
+(10, 'Plan of Record', 'info@planofrecord.xyz', '$2y$10$FacNqIQFFv76IVVSDVyhee0/ypZCOqwK7QPsHHtKCygQMgpvcqpda', NULL, NULL, '2024-07-19 19:19:47'),
+(11, 'Admin', 'admin@test.xyz', '$2y$10$Bbc3tUtNa0NXjJkGFZedJ.5zqQ3Xrr1jMEywnyED2QtamtryPVJti', NULL, NULL, '2024-07-23 15:18:47');
 
 -- --------------------------------------------------------
 
@@ -78,36 +102,12 @@ INSERT INTO `images` (`image_id`, `project_id`, `image_url`, `type`, `alt_text`)
 (45, 9, 'RecipeBook.jpg', 'Project-image', 'Project Image'),
 (46, 9, 'Unicorn.jpg', 'Project-image', 'Project Image'),
 (47, 9, 'Valentines.mp4', 'Project-image', 'Project Image'),
-(48, 10, 'Keychain.jpg', 'Thumbnail', 'Thumbnail'),
-(49, 10, 'RecipeBook.jpg', 'Hover_image', 'Hover Image'),
-(50, 10, 'Color.jpg', 'Project-image', 'Project Image'),
-(51, 10, 'heartscrapbook.jpg', 'Project-image', 'Project Image'),
-(52, 10, 'Keychain.jpg', 'Project-image', 'Project Image'),
-(53, 10, 'RecipeBook.jpg', 'Project-image', 'Project Image'),
-(54, 10, 'Unicorn.jpg', 'Project-image', 'Project Image'),
-(55, 10, 'Valentines.mp4', 'Project-image', 'Project Image'),
 (56, 11, 'Home.png', 'Thumbnail', 'Thumbnail'),
 (57, 11, 'FindRecipe.png', 'Hover_image', 'Hover Image'),
 (58, 11, 'Nutrimatch.png', 'Project-image', 'Project Image'),
 (59, 12, 'Nutrimatch.png', 'Thumbnail', 'Thumbnail'),
 (60, 12, 'monika-grabkowska-pHeX8H9WQpY-unsplash.jpg', 'Hover_image', 'Hover Image'),
 (61, 12, 'Nutrimatch.png', 'Project-image', 'Project Image'),
-(62, 13, 'sebastian-scholz-nuki-IJkSskfEqrM-unsplash.jpg', 'Thumbnail', 'Thumbnail'),
-(63, 13, 'pexels-pavel-danilyuk-8438865.jpg', 'Hover_image', 'Hover Image'),
-(64, 13, '4941457-hd_1920_1080_25fps.mp4', 'Project-image', 'Project Image'),
-(65, 13, 'pexels-pavel-danilyuk-8438865.jpg', 'Project-image', 'Project Image'),
-(66, 13, 'sebastian-scholz-nuki-IJkSskfEqrM-unsplash.jpg', 'Project-image', 'Project Image'),
-(67, 13, 'east-riding-archives-UwMslmQ4BqM-unsplash.jpg', 'Project-image', 'Project Image'),
-(68, 13, 'pexels-alilove69-4883682.jpg', 'Project-image', 'Project Image'),
-(69, 14, '3015488-hd_1920_1080_24fps.mp4', 'Thumbnail', 'Thumbnail'),
-(70, 14, 'pexels-ella-olsson-1640770.jpg', 'Hover_image', 'Hover Image'),
-(71, 14, 'pexels-ella-olsson-1640774.jpg', 'Project-image', 'Project Image'),
-(72, 14, 'pexels-ella-olsson-1640770.jpg', 'Project-image', 'Project Image'),
-(73, 14, 'monika-grabkowska-pHeX8H9WQpY-unsplash.jpg', 'Project-image', 'Project Image'),
-(74, 14, 'patrick-tomasso-GXXYkSwndP4-unsplash.jpg', 'Project-image', 'Project Image'),
-(75, 14, 'caroline-green-Pqt1yIF-Fw0-unsplash.jpg', 'Project-image', 'Project Image'),
-(76, 14, 'jessica-flores-7mL9de-MA4M-unsplash.jpg', 'Project-image', 'Project Image'),
-(77, 14, 'elevate-snnhGYNqm44-unsplash.jpg', 'Project-image', 'Project Image'),
 (78, 15, '8401254-hd_1920_1080_30fps.mp4', 'Thumbnail', 'Thumbnail'),
 (79, 15, '11.png', 'Hover_image', 'Hover Image'),
 (98, 15, '2.png', 'Project-image', 'Project Image'),
@@ -146,7 +146,15 @@ INSERT INTO `images` (`image_id`, `project_id`, `image_url`, `type`, `alt_text`)
 (131, 17, 'arno-smit-sKJ7zSylUao-unsplash.jpg', 'Project-image', 'Project Image'),
 (132, 17, 'jonatan-hernandez-AWkEp5ap-vw-unsplash.jpg', 'Project-image', 'Project Image'),
 (133, 17, 'pankaj-patel-6JVlSdgMacE-unsplash.jpg', 'Project-image', 'Project Image'),
-(134, 17, 'ilya-pavlov-OqtafYT5kTw-unsplash.jpg', 'Project-image', 'Project Image');
+(134, 17, 'ilya-pavlov-OqtafYT5kTw-unsplash.jpg', 'Project-image', 'Project Image'),
+(395, 39, 'pexels-lum3n-44775-1410235.jpg', 'Hover_image', 'Hover Image'),
+(397, 39, '2832316-sd_640_360_30fps.mp4', 'Thumbnail', 'Thumbnail'),
+(398, 39, '854216-sd_960_540_25fps.mp4', 'Project-image', 'Project-image'),
+(399, 39, 'pexels-pixabay-416471.jpg', 'Project-image', 'Project-image'),
+(400, 39, 'pexels-ella-olsson-572949-1640772.jpg', 'Project-image', 'Project-image'),
+(401, 39, 'pexels-fotios-photos-1279330.jpg', 'Project-image', 'Project-image'),
+(402, 39, 'pexels-rajesh-tp-749235-1633525.jpg', 'Project-image', 'Project-image'),
+(403, 39, 'pexels-valeriya-842571.jpg', 'Project-image', 'Project-image');
 
 -- --------------------------------------------------------
 
@@ -167,12 +175,10 @@ CREATE TABLE `layout` (
 --
 
 INSERT INTO `layout` (`id`, `project_id`, `layout_data`, `created_at`, `media_assignments`) VALUES
-(12, 10, '[[\"block2\",\"block3\"],[\"block2\"],[\"block2\"]]', '2024-06-06 16:05:38', '[[[[\"Color.jpg\"],[\"Keychain.jpg\"]],[[\"RecipeBook.jpg\"]],[[\"Valentines.mp4\"]]]]'),
-(15, 13, '[[\"block2\",\"block2\"],[\"block2\"]]', '2024-06-10 15:00:44', '[[[[\"pexels-pavel-danilyuk-8438865.jpg\"],[\"4941457-hd_1920_1080_25fps.mp4\"]],[[\"pexels-alilove69-4883682.jpg\"]]]]'),
-(16, 14, '[[\"block1\",\"block1\"],[\"block5\"],[\"block3\",\"block3\"],[\"block4\",\"block4\",\"block4\"]]', '2024-06-11 14:50:33', '[[[[\"monika-grabkowska-pHeX8H9WQpY-unsplash.jpg\"],[\"caroline-green-Pqt1yIF-Fw0-unsplash.jpg\"]],[[\"patrick-tomasso-GXXYkSwndP4-unsplash.jpg\"]],[[\"pexels-ella-olsson-1640770.jpg\"],[\"jessica-flores-7mL9de-MA4M-unsplash.jpg\"]],[[\"elevate-snnhGYNqm44-unsplash.jpg\"],[\"3015488-hd_1920_1080_24fps.mp4\"],[\"jessica-flores-7mL9de-MA4M-unsplash.jpg\"]]]]'),
 (17, 15, '[[\"block1\"],[\"block2\"],[\"block3\",\"block3\"],[\"block3\",\"block3\"],[\"block2\"],[\"block1\",\"block1\"],[\"block3\",\"block3\",\"block3\"],[\"block2\"],[\"block1\"],[\"block2\",\"block3\"],[\"block4\"],[\"block5\"]]', '2024-06-11 17:26:22', '[[[[\"11.png\"]],[[\"15.png\"]],[[\"4.png\"],[]],[[],[\"7.png\"]],[[\"10.png\"]],[[\"5.png\"],[\"8.png\"]],[[\"4.png\"],[\"6.png\"],[\"2.png\"]],[[\"1.png\"]],[[\"18.png\"]],[[\"8.png\"],[\"2.png\"]],[[\"5.png\"]],[[\"11.png\"]]]]'),
 (18, 16, '[[\"block1\"],[\"block2\"],[\"block2\",\"block3\"],[\"block4\",\"block4\",\"block4\"],[\"block5\"],[\"block5\",\"block5\"]]', '2024-06-11 22:06:30', '[[[[\"C.png\"]],[[\"A.png\"]],[[\"D.png\"],[\"B.png\"]],[[\"F.png\"],[\"I.png\"],[\"G.png\"]],[[\"8391365-hd_1920_1080_24fps.mp4\"]],[[\"D.png\"],[\"C.png\"]]]]'),
-(19, 17, '[[\"block1\",\"block1\"],[\"block2\"],[\"block3\",\"block3\",\"block3\"]]', '2024-06-12 18:13:06', '[[[[\"Haus.png\"],[\"charlotte-coneybeer-FhfhQUZsy0A-unsplash.jpg\"]],[[\"arno-smit-sKJ7zSylUao-unsplash.jpg\"]],[[\"jonatan-hernandez-AWkEp5ap-vw-unsplash.jpg\"],[\"Haus.png\"],[\"sebastian-scholz-nuki-IJkSskfEqrM-unsplash.jpg\"]]]]');
+(19, 17, '[[\"block1\",\"block1\"],[\"block2\"],[\"block3\",\"block3\",\"block3\"]]', '2024-06-12 18:13:06', '[[[[\"Haus.png\"],[\"charlotte-coneybeer-FhfhQUZsy0A-unsplash.jpg\"]],[[\"arno-smit-sKJ7zSylUao-unsplash.jpg\"]],[[\"jonatan-hernandez-AWkEp5ap-vw-unsplash.jpg\"],[\"Haus.png\"],[\"sebastian-scholz-nuki-IJkSskfEqrM-unsplash.jpg\"]]]]'),
+(43, 39, '[[\"block3\",\"block4\"],[\"block4\",\"block3\"]]', '2024-07-11 18:12:30', '[[[[\"pexels-lum3n-44775-1410235.jpg\"],[\"pexels-ella-olsson-572949-1640772.jpg\"]],[[\"854216-sd_960_540_25fps.mp4\"],[\"pexels-pixabay-416471.jpg\"]]]]');
 
 -- --------------------------------------------------------
 
@@ -198,17 +204,23 @@ CREATE TABLE `projects` (
 --
 
 INSERT INTO `projects` (`project_id`, `client`, `description_short`, `description_long`, `type_of_work`, `industry`, `year`, `url`, `addedtime`, `descriptionBlock`) VALUES
-(6, 'Automation', 'Automation', 'AutomationAutomationAutomationAutomationAutomationAutomationAutomationAutomation', 'Automation', 'Automation', 2022, '', '2024-06-04 12:10:24', NULL),
-(10, 'TwistedCartoons', 'TwistedCartoons', 'TwistedCartoonsTwistedCartoons', 'TwistedCartoons', 'TwistedCartoons', 2012, '', '2024-06-06 12:03:01', NULL),
-(13, 'Automation', 'Automation', 'AutomationAutomationAutomation', 'Automation', 'Automation', 2021, '', '2024-06-10 11:00:01', NULL),
-(14, 'FoodBlog', 'FoodBlog is a blog page for food', 'FoodBlog is a blog page for foodFoodBlog is a blog page for foodFoodBlog is a blog page for foodFoodBlog is a blog page for foodFoodBlog is a blog page for foodFoodBlog is a blog page for foodFoodBlog is a blog page for foodFoodBlog is a blog page for foodFoodBlog is a blog page for foodFoodBlog is a blog page for foodFoodBlog is a blog page for foodFoodBlog is a blog page for foodFoodBlog is a blog page for foodFoodBlog is a blog page for food', 'Blog', 'Food', 2022, '', '2024-06-11 10:43:10', NULL),
 (15, 'NOW Running ', 'Motion-driven brand for active individuals.', 'Founder Jay brought us his vision for NOW, a brand that pulses with the rhythm of movement and the essence of activewear fashion. NOW is built on the idea that motion is the thread that connects us—it defines our humanity. We are beings in perpetual motion—every day is race day. Aimed at \"Active Lifestylists,\" those who blend health, wellness, activity, culture, fashion, and aesthetics, NOW fuses the spirit of movement with artistic expression. Look good, feel good—NOW is where style meets energy.', 'Brand Identity', 'Fashion & Beauty', 2024, '', '2024-06-11 13:13:25', NULL),
 (16, 'Aeva Health', 'A holistic platform for women with autoimmune diseases', 'Crafting a brand for a holistic women\'s health platform, the founder\'s mission is clear: to empower women with autoimmune conditions through self-management. By addressing the interconnectedness of mind, body, and soul, the platform strives to minimize symptoms and foster overall well-being. With a visionary goal of creating an inclusive haven for women, the branding reflects a minimalistic, clean aesthetic. Inspired by modern beauty brands, it seamlessly blends trustworthiness with freshness and innovation.', 'Brand Identity', 'Health & Wellness', 2012, '', '2024-06-11 18:05:18', NULL),
-(17, 'Asseto', 'Software to automate Brand Asset Creation', 'Introducing our groundbreaking digital product— to an intuitive solution that\'s meticulously crafted and branded by our team to revolutionize brandedcontent creation. It offers precise execution, saving designers time and costs, and setting new efficiency and excellence standards. Powered by generative AI, it swiftly creates branded assets, seamlessly integrating brand guidelines and output requirements across ad platforms, ensuring effortless consistency and time savings.', 'Brand Identity, Product Design', 'Tech', 2024, '', '2024-06-12 14:12:20', NULL);
+(17, 'Asseto', 'Software to automate Brand Asset Creation', 'Introducing our groundbreaking digital product— to an intuitive solution that\'s meticulously crafted and branded by our team to revolutionize brandedcontent creation. It offers precise execution, saving designers time and costs, and setting new efficiency and excellence standards. Powered by generative AI, it swiftly creates branded assets, seamlessly integrating brand guidelines and output requirements across ad platforms, ensuring effortless consistency and time savings.', 'Brand Identity, Product Design', 'Tech', 2024, '', '2024-06-12 14:12:20', NULL),
+(39, 'Food Blog', 'Test short Desc', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.', 'Test', 'Food', 2024, '', '2024-07-11 14:12:22', NULL);
 
 --
 -- Indexes for dumped tables
 --
+
+--
+-- Indexes for table `admin_users`
+--
+ALTER TABLE `admin_users`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `username` (`username`),
+  ADD UNIQUE KEY `email` (`email`),
+  ADD UNIQUE KEY `password_hashed_token` (`password_hashed_token`) USING BTREE;
 
 --
 -- Indexes for table `images`
@@ -234,22 +246,28 @@ ALTER TABLE `projects`
 --
 
 --
+-- AUTO_INCREMENT for table `admin_users`
+--
+ALTER TABLE `admin_users`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+
+--
 -- AUTO_INCREMENT for table `images`
 --
 ALTER TABLE `images`
-  MODIFY `image_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=135;
+  MODIFY `image_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=479;
 
 --
 -- AUTO_INCREMENT for table `layout`
 --
 ALTER TABLE `layout`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=51;
 
 --
 -- AUTO_INCREMENT for table `projects`
 --
 ALTER TABLE `projects`
-  MODIFY `project_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+  MODIFY `project_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=47;
 
 --
 -- Constraints for dumped tables

@@ -7,8 +7,9 @@
     <link rel="stylesheet" href="../css/style.css">
     <link rel="stylesheet" href="../css/projectstyle.css">
     <link rel="stylesheet" href="layout.css">
-    <link rel="icon" type="image/x-icon" href="./assets/favicon_io/favicon.ico">
+    <link rel="icon" type="image/x-icon" href="../assets/favicon_io/favicon.ico">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="../main.js"></script>
     <style>
         .block {
             width: 150px;
@@ -77,7 +78,7 @@
             cursor: pointer;
         }
         .layout-header {
-            font-size: 50px;
+            font-size: 30px;
             text-align: center;
         }
         .header {
@@ -124,9 +125,13 @@
             right: 12px;
             z-index: 3;
         }
+
+        
+        
     </style>
 </head>
 <body>
+<div class="basketball desktop-only"><img src="../assets/cursor.png" alt="" width="24px"></div>
     <!-- Fetch project details from the database -->
     <?php
 

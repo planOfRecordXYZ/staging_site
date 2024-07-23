@@ -1,4 +1,13 @@
 <?php
+// Start the session
+session_start();
+
+// Redirect to login page if not logged in
+if (!isset($_SESSION['admin_logged_in']) || $_SESSION['admin_logged_in'] !== true) {
+    header('Location: login.php');
+    exit;
+}
+
 include ("../includes/connect.php");
 // Check if image ID and URL are provided
 if(isset($_POST['image_id']) && isset($_POST['image_url'])) {

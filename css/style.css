@@ -118,6 +118,12 @@ header ul {
     display: flex;
     gap: 50px;
 }
+
+/* Added for header consistency */
+header ul li {
+    line-height: var(--menu-line-height);
+}
+
 header ul.desktop-only {
     padding: 30px; /* Added padding to admin nav */
 	position: fixed;
@@ -298,7 +304,7 @@ button {
     color: black;
     font-family: var(--header-font);
     font-size: 16px;
-    transition: color 0.2s ease; /* transition for text color */
+    transition: color 0.2s ease; 
 }
 
 button::before {
@@ -310,7 +316,7 @@ button::before {
     height: 100%;
     background-color: black;
     z-index: -1; 
-    transition: width 0.2s ease; /* transition for background width */
+    transition: width 0.2s ease; 
 }
 
 /* Expand the background to cover the entire button */
@@ -318,11 +324,11 @@ button:hover::before {
     width: 100%; 
 }
 
-/* Change text color on hover */
-button:hover {
+/* Change text color on hover Uncomment this for clear button */
+/* button:hover {
     color: white; 
     z-index: 1; 
-}
+} */
 
 
 /* ROW-1 */

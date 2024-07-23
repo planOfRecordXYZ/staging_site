@@ -1,4 +1,13 @@
 <?php
+// Start the session
+session_start();
+
+// Redirect to login page if not logged in
+if (!isset($_SESSION['admin_logged_in']) || $_SESSION['admin_logged_in'] !== true) {
+    header('Location: login.php');
+    exit;
+}
+
 if (isset($_POST['confirmDelete'])) {
     $project_id = $_POST['project_id'];
     
