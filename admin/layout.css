@@ -319,7 +319,7 @@ height: 480px;
     cursor: pointer;
 }
 .layout-header{
-    font-size: 50px;
+    font-size: 30px;
     text-align: center;
 }
 .header{
@@ -346,10 +346,13 @@ button:hover{
     background-color: white;
     z-index: 2;
     border: 1px solid #ccc;
+    height: 370px;
+    overflow: hidden;
+    overflow-y: scroll;
 }
 .non-fixed {
     text-align: center;
-    margin-top: 430px;
+    margin-top: 380px;
     margin-bottom: 10px;
 }
 .non-fixed-2{

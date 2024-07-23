@@ -14,7 +14,8 @@ include("../includes/connect.php");
  $currentadminEmail = $_SESSION['email'];
 
 // Query to fetch the username using the email
-$query = "SELECT id, username, email FROM admin_users WHERE email != '$currentadminEmail' ORDER BY created_at";
+// $query = "SELECT id, username, email FROM admin_users WHERE email != '$currentadminEmail' ORDER BY created_at";
+$query = "SELECT id, username, email FROM admin_users";
 $result = mysqli_query($connect, $query);
 
 ?>
@@ -41,6 +42,24 @@ $result = mysqli_query($connect, $query);
 
 <div class="container" style="margin-top: 150px; padding: 10px 40px;">
 
+ <!-- Display messages -->
+ <?php if (isset($_SESSION['message'])): ?>
+        <div class="alert alert-success">
+            <?php 
+            echo $_SESSION['message']; 
+            unset($_SESSION['message']);
+            ?>
+        </div>
+    <?php endif; ?>
+    <?php if (isset($_SESSION['error'])): ?>
+        <div class="alert alert-danger">
+            <?php 
+            echo $_SESSION['error']; 
+            unset($_SESSION['error']);
+            ?>
+        </div>
+    <?php endif; ?>
+
     <a class="btn btn-dark mb-3" href="register.php" role="button">Add Admin</a>
 
     <div class="row" style="justify-content: flex-start;">
@@ -53,18 +72,37 @@ $result = mysqli_query($connect, $query);
             echo '<h4>No Admins present in database</h4>';
         } else {
             foreach ($result as $admin) {
-                echo '
+                if($admin['email'] == $currentadminEmail){
+                    echo '
+                <div class="row" style="justify-content: flex-start; order: -1; border-bottom: 1px solid #CCC; margin-bottom: 20px;">
                 <div class="col-sm-4 mb-3">
                     <div class="card" style="width: 18rem;">
                         <ul class="list-group list-group-flush">
                             <li class="list-group-item">'.$admin['username'].'</li>
                         </ul>
                         <div class="card-body">
-                           
+                            <a href="#" class="card-link text-secondary" onclick="changePassword('.$admin['id'].', \''.$admin['username'].'\')">Change Password</a>
                             <a href="#" class="card-link text-danger" onclick="confirmDelete('.$admin['id'].', \''.$admin['username'].'\')">Delete</a>
                         </div>
                     </div>
+                </div>
                 </div>';
+                }
+                else{
+                    echo '
+                    <div class="row" style="justify-content: flex-start;">
+                    <div class="col-sm-4 mb-3">
+                        <div class="card" style="width: 18rem;">
+                            <ul class="list-group list-group-flush">
+                                <li class="list-group-item">'.$admin['username'].'</li>
+                            </ul>
+                            <div class="card-body">
+                                <a href="#" class="card-link text-danger" onclick="confirmDelete('.$admin['id'].', \''.$admin['username'].'\')">Delete</a>
+                            </div>
+                        </div>
+                    </div>
+                    </div>';
+                }
             }   
         }   
         ?>
@@ -98,6 +136,38 @@ $result = mysqli_query($connect, $query);
     </div>
 </div>
 
+<!-- Change Password Modal -->
+<div class="modal fade" id="changePasswordModal" tabindex="-1" aria-labelledby="changePasswordModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="changePasswordModalLabel">Change Password for <span id="changePasswordAdminName"></span></h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form id="changePasswordForm" action="changePassword.php" method="POST" onsubmit="return validateChangePasswordForm();">
+                    <input type="hidden" name="admin_id" id="changePasswordAdminId">
+                    <div class="mb-3">
+                        <label for="current_password" class="form-label">Current Password</label>
+                        <input type="password" class="form-control" id="current_password" name="current_password" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="new_password" class="form-label">New Password</label>
+                        <input type="password" class="form-control" id="new_password" name="new_password" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="confirm_new_password" class="form-label">Confirm New Password</label>
+                        <input type="password" class="form-control" id="confirm_new_password" name="confirm_new_password" required>
+                    </div>
+                    <div id="changePasswordError" class="alert alert-danger" style="display: none;"></div>
+                    <button type="submit" class="btn btn-secondary">Change Password</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+
 <!-- Bootstrap JS Bundle -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 
@@ -107,6 +177,29 @@ $result = mysqli_query($connect, $query);
         document.getElementById('adminId').value = adminId;
         var deleteModal = new bootstrap.Modal(document.getElementById('deleteModal'));
         deleteModal.show();
+    }
+
+    function changePassword(adminId, adminName) {
+        document.getElementById('changePasswordAdminName').textContent = adminName;
+        document.getElementById('changePasswordAdminId').value = adminId;
+        var changePasswordModal = new bootstrap.Modal(document.getElementById('changePasswordModal'));
+        changePasswordModal.show();
+    }
+
+    function validateChangePasswordForm() {
+        var currentPassword = document.getElementById('current_password').value;
+        var newPassword = document.getElementById('new_password').value;
+        var confirmNewPassword = document.getElementById('confirm_new_password').value;
+        var errorDiv = document.getElementById('changePasswordError');
+
+        if (newPassword !== confirmNewPassword) {
+            errorDiv.textContent = "New passwords do not match.";
+            errorDiv.style.display = "block";
+            return false;
+        }
+
+        errorDiv.style.display = "none";
+        return true;
     }
 </script>
 

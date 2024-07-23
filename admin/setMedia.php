@@ -45,12 +45,15 @@ $images = array_merge($thumbnails, $other_images);
     <link rel="stylesheet" href="../css/style.css">
     <link rel="stylesheet" href="../css/projectstyle.css">
     <link rel="stylesheet" href="layout.css">
+    <link rel="icon" type="image/x-icon" href="../assets/favicon_io/favicon.ico">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="../main.js"></script>
 </head>
 <style>
     /* Your CSS styles here */
 </style>
 <body>
+<div class="basketball desktop-only"><img src="../assets/cursor.png" alt="" width="24px"></div>
 <button onclick="toggleHeader()" class="toggleBtn">Hide panel</button>
 <div class="fixed-header" id="fixedHeader">
     <div class="header">
@@ -80,7 +83,7 @@ $images = array_merge($thumbnails, $other_images);
     </div>
 </div>
 <div class="non-fixed" id="nonFixedSection">
-    <p>Drop the images in the blocks below</p>
+    <p>Scroll to view the image list and drop each image in the blocks below. </p>
 </div>
 <div class="layout-container">
     <!-- Render layout blocks dynamically based on saved layout -->
