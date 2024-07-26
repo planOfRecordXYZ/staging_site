@@ -2,6 +2,19 @@
 
 session_start();
 
+$inactive = 600; // timeout period in seconds (10 minutes)
+
+if (isset($_SESSION['timeout'])) {
+    $session_life = time() - $_SESSION['timeout'];
+    if ($session_life > $inactive) {
+        session_unset();
+        session_destroy();
+        header("Location: login.php");
+        exit;
+    }
+}
+$_SESSION['timeout'] = time();    
+
 // Redirect to login page if not logged in
 if (!isset($_SESSION['admin_logged_in']) || $_SESSION['admin_logged_in'] !== true) {
     header('Location: login.php');
@@ -148,7 +161,7 @@ include ('../reusable/adminNav.php');
                                         <div class="input-group" style="width:400px;">
                                             <span class="input-group-btn">
                                                 <span class="btn btn-secondary btn-file">
-                                                    Browse <input type="file" id="Hover_image" name="Hover_image" accept=".png, .jpg, .jpeg, .mp4">
+                                                    Browse <input type="file" id="Hover_image" name="Hover_image" accept=".png, .jpg, .jpeg, .mp4, .gif">
                                                 </span>
                                             </span>
                                             <input type="text" name="Hover_image" class="form-control" readonly>
@@ -177,7 +190,7 @@ include ('../reusable/adminNav.php');
                                     <div class="input-group">
                                         <span class="input-group-btn">
                                             <span class="btn btn-secondary btn-file">
-                                                Browse <input type="file" id="Project-image" name="Project-image[]" multiple accept=".png, .jpg, .jpeg, .mp4">
+                                                Browse <input type="file" id="Project-image" name="Project-image[]" multiple accept=".png, .jpg, .jpeg, .mp4, .gif">
                                             </span>
                                         </span>
                                         <input type="text" class="form-control" name="Project-image" id="file-names" readonly>
@@ -256,23 +269,6 @@ include ('../reusable/adminNav.php');
                 }
             });
 
-            // function readURL(input, imgElementId) {
-            //     if (input.files && input.files[0]) {
-            //         var reader = new FileReader();
-
-            //         reader.onload = function(e) {
-            //             var fileExtension = input.files[0].name.split('.').pop().toLowerCase();
-            //             if (fileExtension === 'mp4' || fileExtension === 'webm' || fileExtension === 'ogg') {
-            //                 $(imgElementId).empty(); // Clear previous content
-            //                 $('<video controls width="150">').attr('src', e.target.result).appendTo(imgElementId);
-            //             } else {
-            //                 $(imgElementId).attr('src', e.target.result);
-            //             }
-            //         }
-
-            //         reader.readAsDataURL(input.files[0]);
-            //     }
-            // }
 
             function readURL(input, imgElementId) {
             // This function reads the file URL and displays the image or video in the specified element
@@ -302,38 +298,6 @@ include ('../reusable/adminNav.php');
                 }
             }
         }
-
-            // function readMultipleURL(input, containerId) {
-            //     if (input.files) {
-            //         var container = $(containerId);
-            //         container.empty(); // Clear previous previews
-            //         var fileNames = [];
-            //         for (var i = 0; i < input.files.length; i++) {
-            //             if (input.files[i]) {
-            //                 fileNames.push(input.files[i].name); // Add file name to the array
-            //                 var reader = new FileReader();
-            //                 reader.onload = function(e) {
-            //                     $('<img/>', {
-            //                         'src': e.target.result,
-            //                         'class': 'img-thumbnail',
-            //                         'style': 'margin: 10px; max-width: 100px; max-height: 100px;'
-            //                     }).appendTo(container);
-            //                 }
-            //                 reader.readAsDataURL(input.files[i]);
-            //             }
-            //         }
-
-            //         // Set all file names in the text input
-            //         var concatenatedNames = '';
-            //         for (var i = 0; i < fileNames.length; i++) {
-            //             concatenatedNames += fileNames[i];
-            //             if (i < fileNames.length - 1) {
-            //                 concatenatedNames += ', '; // Add separator if not the last file name
-            //             }
-            //         }
-            //         $('#file-names').val(concatenatedNames);
-            //     }
-            // }
 
             function readMultipleURL(input, containerId) {
             // This function reads multiple files and displays them as thumbnails in the specified container

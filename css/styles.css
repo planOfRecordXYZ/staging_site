@@ -150,6 +150,8 @@
      grid-template-columns: repeat(3, minmax(200px,1fr));
      grid-gap: 156px;
  }
+
+
  
  .grid-span-2 {
      grid-column: span 2;
@@ -163,7 +165,7 @@
  }
  
  header ul.desktop-only {
-    padding: 30px; /* Added padding to admin nav */
+    padding: 30px; 
      position: fixed;
    background: white;
    z-index: 100;
@@ -284,12 +286,12 @@ header ul li a:hover{
  
  span.plan {
      top: 82px;
-   left: -208px;
+     left: -208px;
  }
  
  span.of {
      top: 80px;
-   right: -102px;
+     right: -102px;
  }
  
  span.record {
@@ -322,7 +324,6 @@ header ul li a:hover{
  /*ABOUT PAGE*/
  
  .aboutpage {
- /*	padding: 30px 11px 120px 11px;*/
      padding: 30px 4% 120px 4%;
  }
  
@@ -371,19 +372,23 @@ header ul li a:hover{
  .about-services {
      margin-bottom: 160px;
      border-top: 1px solid var(--secondary-font-color);
-   padding-top: 64px;
+     padding-top: 64px;
+ }
+
+ .aboutpage .three-column{
+     grid-template-columns: 350px repeat(2, minmax(200px, 1fr));
  }
  
  .about-clients {
      margin-bottom: 198px;
      border-top: 1px solid var(--secondary-font-color);
-   padding-top: 64px;
+     padding-top: 64px;
  }
  
  .about-inquiries {
      margin-bottom: 120px;
      border-top: 1px solid var(--secondary-font-color);
-   padding-top: 64px;
+     padding-top: 64px;
  }
  
  .about-inquiries p {
@@ -534,7 +539,7 @@ header ul li a:hover{
  
  .about-pillars {
      border-top: 1px solid var(--secondary-font-color);
-   padding-top: 64px;
+     padding-top: 64px;
  }
  
  .about-pillars p, .about-pillars li {
@@ -558,6 +563,7 @@ header ul li a:hover{
  .with-respect{
     padding: 10px 4%;
     width: 40%;
+    top: 60px;
  }
  
  /*CONTACT PAGE*/
@@ -576,7 +582,6 @@ header ul li a:hover{
      font-size: var(--header-font-size);
      line-height: var(--header-line-height);
      letter-spacing: var(--header-letter-spacing);
- /*    margin: 0 4% 72px;*/
          margin: 0;
  }
  
@@ -683,7 +688,6 @@ header ul li a:hover{
  
  .contactemail {
      max-width: 900px;
- /*	margin-left: auto;*/
      margin-right: 148px;
  }
  

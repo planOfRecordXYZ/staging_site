@@ -2,6 +2,19 @@
 
   session_start();
 
+  $inactive = 600; // timeout period in seconds (10 minutes)
+
+  if (isset($_SESSION['timeout'])) {
+      $session_life = time() - $_SESSION['timeout'];
+      if ($session_life > $inactive) {
+          session_unset();
+          session_destroy();
+          header("Location: login.php");
+          exit;
+      }
+  }
+  $_SESSION['timeout'] = time();    
+
   // Redirect to login page if not logged in
   if (!isset($_SESSION['admin_logged_in']) || $_SESSION['admin_logged_in'] !== true) {
       header('Location: login.php');
@@ -49,9 +62,6 @@ $images = array_merge($thumbnails, $other_images);
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="../main.js"></script>
 </head>
-<style>
-    /* Your CSS styles here */
-</style>
 <body>
 <div class="basketball desktop-only"><img src="../assets/cursor.png" alt="" width="24px"></div>
 <button onclick="toggleHeader()" class="toggleBtn">Hide panel</button>

@@ -18,11 +18,6 @@
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="./css/mobile.css">
 </head>
-<style>
-    .socials a:hover {
-         color: var(--secondary-font-color) !important;
-     }
-</style>
 <body>
     <!-- Decorative image displayed only on desktop -->
     <div class="basketball desktop-only">

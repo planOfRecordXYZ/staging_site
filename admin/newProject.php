@@ -29,6 +29,19 @@
 
 session_start();
 
+$inactive = 600; // timeout period in seconds (10 minutes)
+
+if (isset($_SESSION['timeout'])) {
+    $session_life = time() - $_SESSION['timeout'];
+    if ($session_life > $inactive) {
+        session_unset();
+        session_destroy();
+        header("Location: login.php");
+        exit;
+    }
+}
+$_SESSION['timeout'] = time();    
+
 // Redirect to login page if not logged in
 if (!isset($_SESSION['admin_logged_in']) || $_SESSION['admin_logged_in'] !== true) {
     header('Location: login.php');
@@ -120,7 +133,7 @@ include ('../includes/connect.php');
                                     <div class="input-group" style="width:400px;">
                                         <span class="input-group-btn">
                                             <span class="btn btn-secondary btn-file">
-                                                Browse <input type="file" id="Hover_image" name="Hover_image" accept=".png, .jpg, .jpeg, .mp4, .mov">
+                                                Browse <input type="file" id="Hover_image" name="Hover_image" accept=".png, .jpg, .jpeg, .mp4, .mov, .gif">
                                             </span>
                                         </span>
                                         <input type="text" name="Hover_image" class="form-control" readonly>
@@ -139,7 +152,7 @@ include ('../includes/connect.php');
                                     <div class="input-group">
                                         <span class="input-group-btn">
                                             <span class="btn btn-secondary btn-file">
-                                                Browse <input type="file" id="Project-image" name="Project-image[]" multiple accept=".png, .jpg, .jpeg, .mp4, .mov">
+                                                Browse <input type="file" id="Project-image" name="Project-image[]" multiple accept=".png, .jpg, .jpeg, .mp4, .mov, .gif">
                                             </span>
                                         </span>
                                         <input type="text" class="form-control" name="Project-image" id="file-names" readonly>

@@ -55,12 +55,10 @@ $medias = $media_assignments[0];
     <link rel="icon" type="image/x-icon" href="./assets/favicon_io/favicon.ico">
     <script src="./main.js"></script>
     <link rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet" href="./css/mobile.css">
     <link rel="stylesheet" href="admin/layout.css">
-    <style>
-       
-    </style>
+    <link rel="stylesheet" href="./css/mobile.css">
 </head>
+<style></style>
 <body>
     <div class="basketball desktop-only"><img src="./assets/cursor.png" alt="" width="24px"></div>
     <?php include('reusable/nav.php');?>
@@ -119,7 +117,7 @@ $medias = $media_assignments[0];
                 <p><?php echo htmlspecialchars($result['year']); ?></p>
             </div>
         </div>
-        <div class="col">
+        <div class="col description-col">
             <div class="project-description">
                 <p><?php echo htmlspecialchars($result['description_long']); ?></p>
             </div>
@@ -134,14 +132,21 @@ $medias = $media_assignments[0];
 
             // Iterate through each block in the current row
             foreach ($row as $block_index => $block_id) {
-                echo '<div class="' . htmlspecialchars($block_id) . ' media">'; // Start block
-
+                // Start block
+                // echo '<div class="' . htmlspecialchars($block_id) . ' media">'; 
+                $is_empty = !isset($medias[$i][$block_index]) || empty($medias[$i][$block_index]);
+                $block_class = htmlspecialchars($block_id) . ' media';
+                if ($is_empty) {
+                    $block_class .= ' empty-block';
+                }
+                echo '<div class="' . $block_class . '">'; // Start block
                
+                if (!$is_empty) {
                     // Iterate through each media assignment for the current block
                     foreach ($medias[$i][$block_index] as $media) {
                         $media_url = './uploads/' . htmlspecialchars($media);
                         $media_type = pathinfo($media_url, PATHINFO_EXTENSION);
-                        if (in_array($media_type, ['jpg', 'jpeg', 'png'])) {
+                        if (in_array($media_type, ['jpg', 'jpeg', 'png', 'gif'])) {
                             // Display image
                             echo '<img src="' . $media_url . '" alt="">';
                         } elseif (in_array($media_type, ['mp4', 'webm', 'ogg', 'mov'])) {
@@ -152,10 +157,10 @@ $medias = $media_assignments[0];
                             echo '</video>';
                         } else {
                             // Unsupported media type
-                            echo 'Unsupported media type';
+                            // echo 'Unsupported media type';
                         }
                     }
-
+                }
                 echo '</div>'; // End block
             }
             echo '</div>'; // End row

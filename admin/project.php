@@ -5,6 +5,19 @@ $project_id = $_GET['project_id'];
 
 session_start();
 
+$inactive = 600; // timeout period in seconds (10 minutes)
+
+if (isset($_SESSION['timeout'])) {
+    $session_life = time() - $_SESSION['timeout'];
+    if ($session_life > $inactive) {
+        session_unset();
+        session_destroy();
+        header("Location: login.php");
+        exit;
+    }
+}
+$_SESSION['timeout'] = time();    
+
 // Redirect to login page if not logged in
 if (!isset($_SESSION['admin_logged_in']) || $_SESSION['admin_logged_in'] !== true) {
     header('Location: login.php');
@@ -85,7 +98,7 @@ $medias = $media_assignments[0];
             justify-content: center;
         }
         .media {
-            margin: 10px;
+            margin: 20px 10px;
             width: 100%;
             height: 100%;
             overflow: hidden;
@@ -106,6 +119,7 @@ $medias = $media_assignments[0];
             height: 100%;
             object-fit: cover;
         }
+/*         
         .block1 {
             max-width: 1478px;
             height: 600px;
@@ -125,10 +139,35 @@ $medias = $media_assignments[0];
         .block5 {
             width: 1280px;
             height: 720px;
+        } */
+
+
+        .block1 {
+            max-width: 1920px;
+            height: 800px;
         }
+        .block2 {
+            max-width: 1920px;
+            height: 1200px;
+        }
+        .block3 {
+            max-width: 900px;
+            height: 1200px;
+        }
+
+        .block4 {
+            width: 712px;
+            height: 480px;
+        }
+        .block5 {
+            max-width: 1920px;
+            height: 1080px;
+        } 
+
+
         .thumbnail {
             max-width: 100%;
-            height: 720px;
+            max-height: 720px;
             overflow: hidden;
         }
         .thumbnail img {
@@ -181,7 +220,7 @@ $medias = $media_assignments[0];
                 <p><?php echo htmlspecialchars($result['year']); ?></p>
             </div>
         </div>
-        <div class="col">
+        <div class="col description-col">
             <div class="project-description">
                 <p><?php echo htmlspecialchars($result['description_long']); ?></p>
             </div>
@@ -198,7 +237,7 @@ $medias = $media_assignments[0];
                 foreach ($medias[$i][$block_index] as $media) {
                     $media_url = '../uploads/' . htmlspecialchars($media);
                     $media_type = pathinfo($media_url, PATHINFO_EXTENSION);
-                    if (in_array($media_type, ['jpg', 'jpeg', 'png'])) {
+                    if (in_array($media_type, ['jpg', 'jpeg', 'png', 'gif'])) {
                         echo '<img src="' . $media_url . '" alt="">';
                     } elseif (in_array($media_type, ['mp4', 'webm', 'ogg', 'mov'])) {
                         echo '<video muted autoplay loop>';
@@ -206,7 +245,7 @@ $medias = $media_assignments[0];
                         echo 'Your browser does not support the video tag.';
                         echo '</video>';
                     } else {
-                        echo 'Unsupported media type';
+                        // echo 'Unsupported media type';
                     }
                 }
                 echo '</div>'; // End block
@@ -215,5 +254,6 @@ $medias = $media_assignments[0];
         }
         ?>
     </div> <!-- End project-layout -->
+    <?php include('../reusable/footer.php'); ?>
 </body>
 </html>

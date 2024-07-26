@@ -13,9 +13,3 @@
         <p class="copyright">© Plan of Record 2024</p>
   
 </footer>
-
-<style>
-    .socials a:hover {
-         color: var(--secondary-font-color) !important;
-     }
-</style>

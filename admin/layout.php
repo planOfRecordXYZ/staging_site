@@ -137,6 +137,19 @@
 
     session_start();
 
+    $inactive = 600; // timeout period in seconds (10 minutes)
+
+    if (isset($_SESSION['timeout'])) {
+        $session_life = time() - $_SESSION['timeout'];
+        if ($session_life > $inactive) {
+            session_unset();
+            session_destroy();
+            header("Location: login.php");
+            exit;
+        }
+    }
+    $_SESSION['timeout'] = time();    
+
     // Redirect to login page if not logged in
     if (!isset($_SESSION['admin_logged_in']) || $_SESSION['admin_logged_in'] !== true) {
         header('Location: login.php');

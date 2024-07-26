@@ -185,10 +185,18 @@
     overflow-x: auto;
     white-space: nowrap;
     cursor: ew-resize;
+    
 }
+
+.projects .imageList{
+    padding-bottom: 20px;
+}
+
+
 .imageList:hover {
     scrollbar-color: #000 #fff; /* thumb color, track color */
 }
+
 
 .media-item {
     display: inline-block;
