@@ -220,7 +220,7 @@ section,
 }
 
 .background-text .plan {
-    top: calc(100% - 99%); /* Adjusted for responsiveness */
+    top: calc(100% - 99.5%); /* Adjusted for responsiveness */
     right: -3vw; /* Adjusted for responsiveness */
 }
 
@@ -324,19 +324,13 @@ button:hover::before {
     width: 100%; 
 }
 
-/* Change text color on hover Uncomment this for clear button */
-/* button:hover {
-    color: white; 
-    z-index: 1; 
-} */
-
 
 /* ROW-1 */
 .intro-block{
     display: flex;
     flex-direction: column;
     align-items:flex-start;
-    gap: 80px;
+    gap: 96px;
     position: relative;
     z-index: 2;
     top: 300px; /* Adjust this value to move the block down */
@@ -470,31 +464,37 @@ footer{
 /* PROJECST PAGE - INDEX */
 
 .project-details{
-    padding: 20px;
+    padding: 50px 20px 40px;
     display: flex;
     justify-content: space-between;
-    align-items: center;
+    align-items: flex-start;
 }
 
 .project-header h1{
-    margin-bottom: 30px;
+    margin-bottom: 16px;
     color: #C0C0C8;
     font-family: var(--header-font);
-    font-size: var(--header-font-size); 
+    /* font-size: var(--header-font-size);  */
+    font-size: 48px;
     font-weight: var(--header-font-weight); 
-    line-height: var(--header-line-height);
+    line-height: 48px;
     letter-spacing: var(--header-letter-spacing);
 }
 .industry p{
     color: black;
-    padding: 5px;
+    padding: 2px;
     font-family: var(--main-font);
-    font-size: var(--main-font-size-2);
+    /* font-size: var(--main-font-size-2); */
+    font-size: 20px;
+}
+
+.description-col{
+    width: 60%;
 }
 
 .project-description{
-    width: 700px;
-    font-size: 24px;
+    /* width: 700px; */
+    font-size: 20px;
 }
 .project-desc{
     padding-top: 12px;
@@ -516,7 +516,7 @@ footer{
     justify-content: center;
 }
 .media {
-    margin: 10px;
+    margin: 20px 10px;
     width: 100%;
     height: 100%;
     overflow: hidden;
@@ -532,13 +532,15 @@ footer{
     height: 100%;
     object-fit: cover;
 }
+
 .media video {
     width: 100%;
     height: 100%;
     object-fit: cover;
 }
+
 /* Define block dimensions */
-.block1 {
+/* .block1 {
     max-width: 1478px;
     height: 600px;
 }
@@ -557,10 +559,35 @@ footer{
 .block5 {
     width: 1280px;
     height: 720px;
+} */
+
+
+.block1 {
+    max-width: 1920px;
+    height: 800px;
 }
+.block2 {
+    max-width: 1920px;
+    height: 1200px;
+}
+.block3 {
+    max-width: 900px;
+    height: 1200px;
+}
+
+.block4 {
+    width: 712px;
+    height: 480px;
+}
+.block5 {
+    max-width: 1920px;
+    height: 1080px;
+} 
+
 .thumbnail {
+    padding-top: 120px;
     max-width: 100%;
-    height: 720px;
+    max-height: 720px;
     overflow: hidden;
 }
 .thumbnail img {

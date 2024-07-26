@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:8889
--- Generation Time: Jul 23, 2024 at 05:16 PM
+-- Generation Time: Jul 26, 2024 at 09:13 PM
 -- Server version: 5.7.39
 -- PHP Version: 7.4.33
 
@@ -140,21 +140,22 @@ INSERT INTO `images` (`image_id`, `project_id`, `image_url`, `type`, `alt_text`)
 (125, 16, 'HH.png', 'Project-image', 'Project Image'),
 (126, 16, 'I.png', 'Project-image', 'Project Image'),
 (127, 17, '4799815-hd_1920_1080_30fps.mp4', 'Thumbnail', 'Thumbnail'),
-(128, 17, 'sebastian-scholz-nuki-IJkSskfEqrM-unsplash.jpg', 'Hover_image', 'Hover Image'),
-(129, 17, 'Haus.png', 'Project-image', 'Project Image'),
-(130, 17, 'charlotte-coneybeer-FhfhQUZsy0A-unsplash.jpg', 'Project-image', 'Project Image'),
-(131, 17, 'arno-smit-sKJ7zSylUao-unsplash.jpg', 'Project-image', 'Project Image'),
-(132, 17, 'jonatan-hernandez-AWkEp5ap-vw-unsplash.jpg', 'Project-image', 'Project Image'),
-(133, 17, 'pankaj-patel-6JVlSdgMacE-unsplash.jpg', 'Project-image', 'Project Image'),
-(134, 17, 'ilya-pavlov-OqtafYT5kTw-unsplash.jpg', 'Project-image', 'Project Image'),
-(395, 39, 'pexels-lum3n-44775-1410235.jpg', 'Hover_image', 'Hover Image'),
-(397, 39, '2832316-sd_640_360_30fps.mp4', 'Thumbnail', 'Thumbnail'),
-(398, 39, '854216-sd_960_540_25fps.mp4', 'Project-image', 'Project-image'),
-(399, 39, 'pexels-pixabay-416471.jpg', 'Project-image', 'Project-image'),
-(400, 39, 'pexels-ella-olsson-572949-1640772.jpg', 'Project-image', 'Project-image'),
-(401, 39, 'pexels-fotios-photos-1279330.jpg', 'Project-image', 'Project-image'),
-(402, 39, 'pexels-rajesh-tp-749235-1633525.jpg', 'Project-image', 'Project-image'),
-(403, 39, 'pexels-valeriya-842571.jpg', 'Project-image', 'Project-image');
+(410, 39, 'HPH_Train_Terminal_Posters_crop.mp4', 'Thumbnail', 'Thumbnail'),
+(411, 39, 'Data Viz.png', 'Project-image', 'Project-image'),
+(412, 39, 'Hoodie.png', 'Project-image', 'Project-image'),
+(413, 39, 'IconPosters.png', 'Project-image', 'Project-image'),
+(414, 39, 'IGPosts.png', 'Project-image', 'Project-image'),
+(415, 39, 'NewsLetter.png', 'Project-image', 'Project-image'),
+(416, 39, 'Tote.png', 'Project-image', 'Project-image'),
+(417, 39, 'Magazine.png', 'Project-image', 'Project-image'),
+(418, 39, '_HPH_IconConstruction.mp4', 'Project-image', 'Project-image'),
+(419, 39, 'HPH_Principles_1280.mp4', 'Project-image', 'Project-image'),
+(420, 39, 'StoryPages_Mockup 2.mp4', 'Project-image', 'Project-image'),
+(421, 39, 'HPH_Airport_Lounge_screen_crop_1.mp4', 'Project-image', 'Project-image'),
+(422, 39, 'HPH_Guidelines_main.mp4', 'Project-image', 'Project-image'),
+(423, 39, 'torus_rays.gif', 'Project-image', 'Project-image'),
+(424, 39, 'MM_Phone_HPH_Coffee_IG_Story_PoR_website.mp4', 'Project-image', 'Project-image'),
+(425, 17, 'Haus.png', 'Project-image', 'Project-image');
 
 -- --------------------------------------------------------
 
@@ -177,8 +178,8 @@ CREATE TABLE `layout` (
 INSERT INTO `layout` (`id`, `project_id`, `layout_data`, `created_at`, `media_assignments`) VALUES
 (17, 15, '[[\"block1\"],[\"block2\"],[\"block3\",\"block3\"],[\"block3\",\"block3\"],[\"block2\"],[\"block1\",\"block1\"],[\"block3\",\"block3\",\"block3\"],[\"block2\"],[\"block1\"],[\"block2\",\"block3\"],[\"block4\"],[\"block5\"]]', '2024-06-11 17:26:22', '[[[[\"11.png\"]],[[\"15.png\"]],[[\"4.png\"],[]],[[],[\"7.png\"]],[[\"10.png\"]],[[\"5.png\"],[\"8.png\"]],[[\"4.png\"],[\"6.png\"],[\"2.png\"]],[[\"1.png\"]],[[\"18.png\"]],[[\"8.png\"],[\"2.png\"]],[[\"5.png\"]],[[\"11.png\"]]]]'),
 (18, 16, '[[\"block1\"],[\"block2\"],[\"block2\",\"block3\"],[\"block4\",\"block4\",\"block4\"],[\"block5\"],[\"block5\",\"block5\"]]', '2024-06-11 22:06:30', '[[[[\"C.png\"]],[[\"A.png\"]],[[\"D.png\"],[\"B.png\"]],[[\"F.png\"],[\"I.png\"],[\"G.png\"]],[[\"8391365-hd_1920_1080_24fps.mp4\"]],[[\"D.png\"],[\"C.png\"]]]]'),
-(19, 17, '[[\"block1\",\"block1\"],[\"block2\"],[\"block3\",\"block3\",\"block3\"]]', '2024-06-12 18:13:06', '[[[[\"Haus.png\"],[\"charlotte-coneybeer-FhfhQUZsy0A-unsplash.jpg\"]],[[\"arno-smit-sKJ7zSylUao-unsplash.jpg\"]],[[\"jonatan-hernandez-AWkEp5ap-vw-unsplash.jpg\"],[\"Haus.png\"],[\"sebastian-scholz-nuki-IJkSskfEqrM-unsplash.jpg\"]]]]'),
-(43, 39, '[[\"block3\",\"block4\"],[\"block4\",\"block3\"]]', '2024-07-11 18:12:30', '[[[[\"pexels-lum3n-44775-1410235.jpg\"],[\"pexels-ella-olsson-572949-1640772.jpg\"]],[[\"854216-sd_960_540_25fps.mp4\"],[\"pexels-pixabay-416471.jpg\"]]]]');
+(19, 17, '[[\"block3\",\"block3\"]]', '2024-06-12 18:13:06', '[[[[\"Haus.png\"],[]]]]'),
+(43, 39, '[[\"block5\"],[\"block5\"],[\"block5\"],[\"block5\"],[\"block5\"],[\"block5\"],[\"block5\"],[\"block5\"],[\"block5\"],[\"block5\"],[\"block5\"],[\"block5\"],[\"block5\"],[\"block5\"]]', '2024-07-11 18:12:30', '[[[[\"IconPosters.png\"]],[[\"_HPH_IconConstruction.mp4\"]],[[\"HPH_Guidelines_main.mp4\"]],[[\"HPH_Principles_1280.mp4\"]],[[\"IGPosts.png\"]],[[\"NewsLetter.png\"]],[[\"HPH_Airport_Lounge_screen_crop_1.mp4\"]],[[\"torus_rays.gif\"]],[[\"MM_Phone_HPH_Coffee_IG_Story_PoR_website.mp4\"]],[[\"Magazine.png\"]],[[\"Hoodie.png\"]],[[\"StoryPages_Mockup 2.mp4\"]],[[\"Data Viz.png\"]],[[\"Tote.png\"]]]]');
 
 -- --------------------------------------------------------
 
@@ -207,7 +208,7 @@ INSERT INTO `projects` (`project_id`, `client`, `description_short`, `descriptio
 (15, 'NOW Running ', 'Motion-driven brand for active individuals.', 'Founder Jay brought us his vision for NOW, a brand that pulses with the rhythm of movement and the essence of activewear fashion. NOW is built on the idea that motion is the thread that connects us—it defines our humanity. We are beings in perpetual motion—every day is race day. Aimed at \"Active Lifestylists,\" those who blend health, wellness, activity, culture, fashion, and aesthetics, NOW fuses the spirit of movement with artistic expression. Look good, feel good—NOW is where style meets energy.', 'Brand Identity', 'Fashion & Beauty', 2024, '', '2024-06-11 13:13:25', NULL),
 (16, 'Aeva Health', 'A holistic platform for women with autoimmune diseases', 'Crafting a brand for a holistic women\'s health platform, the founder\'s mission is clear: to empower women with autoimmune conditions through self-management. By addressing the interconnectedness of mind, body, and soul, the platform strives to minimize symptoms and foster overall well-being. With a visionary goal of creating an inclusive haven for women, the branding reflects a minimalistic, clean aesthetic. Inspired by modern beauty brands, it seamlessly blends trustworthiness with freshness and innovation.', 'Brand Identity', 'Health & Wellness', 2012, '', '2024-06-11 18:05:18', NULL),
 (17, 'Asseto', 'Software to automate Brand Asset Creation', 'Introducing our groundbreaking digital product— to an intuitive solution that\'s meticulously crafted and branded by our team to revolutionize brandedcontent creation. It offers precise execution, saving designers time and costs, and setting new efficiency and excellence standards. Powered by generative AI, it swiftly creates branded assets, seamlessly integrating brand guidelines and output requirements across ad platforms, ensuring effortless consistency and time savings.', 'Brand Identity, Product Design', 'Tech', 2024, '', '2024-06-12 14:12:20', NULL),
-(39, 'Food Blog', 'Test short Desc', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.', 'Test', 'Food', 2024, '', '2024-07-11 14:12:22', NULL);
+(39, 'Harvard Public Health', 'Harvard Public Health', 'When Harvard Public Health sought to unify their magazine’s brand and marketing voice, they turned to us. We crafted a comprehensive 130-page brand guidelines, asset templates, and provided design recommendations for their editorial website. This brand toolkit amplifies the HPH brand across all promotional channels and audience touchpoints, ensuring a cohesive and memorable presence.', 'Brand Identity, Motion', 'Education, Health', 2024, '', '2024-07-11 14:12:22', NULL);
 
 --
 -- Indexes for dumped tables
@@ -249,25 +250,25 @@ ALTER TABLE `projects`
 -- AUTO_INCREMENT for table `admin_users`
 --
 ALTER TABLE `admin_users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT for table `images`
 --
 ALTER TABLE `images`
-  MODIFY `image_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=479;
+  MODIFY `image_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=432;
 
 --
 -- AUTO_INCREMENT for table `layout`
 --
 ALTER TABLE `layout`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=51;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=45;
 
 --
 -- AUTO_INCREMENT for table `projects`
 --
 ALTER TABLE `projects`
-  MODIFY `project_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=47;
+  MODIFY `project_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=41;
 
 --
 -- Constraints for dumped tables

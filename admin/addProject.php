@@ -2,6 +2,19 @@
 // Start the session
 session_start();
 
+$inactive = 600; // timeout period in seconds (10 minutes)
+
+if (isset($_SESSION['timeout'])) {
+    $session_life = time() - $_SESSION['timeout'];
+    if ($session_life > $inactive) {
+        session_unset();
+        session_destroy();
+        header("Location: login.php");
+        exit;
+    }
+}
+$_SESSION['timeout'] = time();    
+
 // Redirect to login page if not logged in
 if (!isset($_SESSION['admin_logged_in']) || $_SESSION['admin_logged_in'] !== true) {
     header('Location: login.php');
@@ -45,7 +58,7 @@ if (isset($_POST['newProject'])) {
             $fileName = basename($file['name']);
             $uploadPath = $uploadDirectory . $fileName;
 
-            // Check if file already exists
+            // Check if file already exists and if it does duplicate the file in the directory to avoid clashes
             $fileCount = 1;
             $originalFileName = $fileName;
             while (file_exists($uploadPath)) {
@@ -57,7 +70,7 @@ if (isset($_POST['newProject'])) {
             $fileType = mime_content_type($tmpPath);
 
             // Validate supported file types
-            $supportedTypes = ['image/jpeg', 'image/jpg', 'image/png', 'video/mp4'];
+            $supportedTypes = ['image/jpeg', 'image/jpg', 'image/png', 'video/mp4', 'image/gif'];
             if (!in_array($fileType, $supportedTypes)) {
                 $errors[] = "Unsupported file type for $altText.";
                 return false;

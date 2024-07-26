@@ -2,6 +2,19 @@
 
 session_start();
 
+$inactive = 600; // timeout period in seconds (10 minutes)
+
+if (isset($_SESSION['timeout'])) {
+    $session_life = time() - $_SESSION['timeout'];
+    if ($session_life > $inactive) {
+        session_unset();
+        session_destroy();
+        header("Location: login.php");
+        exit;
+    }
+}
+$_SESSION['timeout'] = time();    
+
 // Redirect to login page if not logged in
 if (!isset($_SESSION['admin_logged_in']) || $_SESSION['admin_logged_in'] !== true) {
     header('Location: login.php');
@@ -14,7 +27,6 @@ include("../includes/connect.php");
  $currentadminEmail = $_SESSION['email'];
 
 // Query to fetch the username using the email
-// $query = "SELECT id, username, email FROM admin_users WHERE email != '$currentadminEmail' ORDER BY created_at";
 $query = "SELECT id, username, email FROM admin_users";
 $result = mysqli_query($connect, $query);
 
@@ -68,10 +80,13 @@ $result = mysqli_query($connect, $query);
         if (mysqli_connect_error()) {
             die("Connection error: " . mysqli_connect_error());
         }
+        // Display a message if no admins are present in the database
         if ($result == null) {
             echo '<h4>No Admins present in database</h4>';
         } else {
+             // Loop through the admin users and display them
             foreach ($result as $admin) {
+                // Highlight the current admin user
                 if($admin['email'] == $currentadminEmail){
                     echo '
                 <div class="row" style="justify-content: flex-start; order: -1; border-bottom: 1px solid #CCC; margin-bottom: 20px;">
@@ -172,6 +187,7 @@ $result = mysqli_query($connect, $query);
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 
 <script>
+    // Function to confirm deletion of an admin user
     function confirmDelete(adminId, adminName) {
         document.getElementById('adminName').textContent = adminName;
         document.getElementById('adminId').value = adminId;
@@ -179,6 +195,7 @@ $result = mysqli_query($connect, $query);
         deleteModal.show();
     }
 
+    // Function to initiate password change for an admin user
     function changePassword(adminId, adminName) {
         document.getElementById('changePasswordAdminName').textContent = adminName;
         document.getElementById('changePasswordAdminId').value = adminId;
@@ -186,6 +203,7 @@ $result = mysqli_query($connect, $query);
         changePasswordModal.show();
     }
 
+    // Function to validate the change password form
     function validateChangePasswordForm() {
         var currentPassword = document.getElementById('current_password').value;
         var newPassword = document.getElementById('new_password').value;

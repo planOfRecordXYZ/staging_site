@@ -43,7 +43,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Plan of Record</title>
-    <!-- <link rel="stylesheet" href="../css/admin-style.css"> -->
       <!-- Linking external CSS files -->
       <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css">
     <link rel="icon" type="image/x-icon" href="../assets/favicon_io/favicon.ico">

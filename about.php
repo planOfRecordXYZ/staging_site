@@ -80,12 +80,14 @@
   					<li>Converse</li>
   					<li>Enercare</li>
   					<li>Google</li>
-  					<li>HomeSense</li>
+					<li>Harvard Public Health</li>
+  					
   				</ul>
   			</div>
   			<div>
   				<ul>
-  					<li>Kohl's</li>
+				    <li>HomeSense</li>
+  					<li class="mobile-only">Kohl's</li> <!-- Hidden from the desktop for consistency -->
   					<li>Marshalls</li>
   					<li>Meta</li>
   					<li>NYC Tech</li>
