@@ -174,11 +174,11 @@
         <!-- Container for draggable blocks -->
        
         <div class="block-container">
-            <div class="block" draggable="true" id="block1">1478*600</div>
-            <div class="block" draggable="true" id="block2">1478*1000</div>
-            <div class="block" draggable="true" id="block3">715*1000</div>
+            <div class="block" draggable="true" id="block1">1920*800</div>
+            <div class="block" draggable="true" id="block2">1920*1200</div>
+            <div class="block" draggable="true" id="block3">900*1200</div>
             <div class="block" draggable="true" id="block4">712*480</div>
-            <div class="block" draggable="true" id="block5">1280*720</div>
+            <div class="block" draggable="true" id="block5">1920*1080</div>
              <!-- Keep adding more blocks if required and set the styling for the ID -->
         </div>
         <!-- Options for adding blocks to new columns or rows -->

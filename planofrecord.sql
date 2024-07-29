@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:8889
--- Generation Time: Jul 26, 2024 at 09:13 PM
+-- Generation Time: Jul 29, 2024 at 05:02 PM
 -- Server version: 5.7.39
 -- PHP Version: 7.4.33
 
@@ -64,50 +64,6 @@ CREATE TABLE `images` (
 --
 
 INSERT INTO `images` (`image_id`, `project_id`, `image_url`, `type`, `alt_text`) VALUES
-(4, 2, 'IMG-screen.png', 'Thumbnail', 'TomEllicot-thumbnail'),
-(5, 5, 'pexels-pavel-danilyuk-8438865.jpg', 'Thumbnail', 'Thumbnail'),
-(6, 5, 'pexels-kjbromme-16647824.jpg', 'Hover_image', 'Hover Image'),
-(7, 5, '8566809-uhd_2160_3840_30fps.mp4', 'Project-image', 'Project Image'),
-(8, 5, 'bence-boros-anapPhJFRhM-unsplash.jpg', 'Project-image', 'Project Image'),
-(9, 5, 'east-riding-archives-UwMslmQ4BqM-unsplash.jpg', 'Project-image', 'Project Image'),
-(10, 5, 'pexels-alilove69-4883682.jpg', 'Project-image', 'Project Image'),
-(11, 5, 'lenny-kuhne-jHZ70nRk7Ns-unsplash.jpg', 'Project-image', 'Project Image'),
-(12, 5, 'austrian-national-library-3c1Jv1EXYtc-unsplash.jpg', 'Project-image', 'Project Image'),
-(13, 6, 'pexels-pavel-danilyuk-8438865.jpg', 'Thumbnail', 'Thumbnail'),
-(14, 6, 'pexels-kjbromme-16647824.jpg', 'Hover_image', 'Hover Image'),
-(15, 6, '8566809-uhd_2160_3840_30fps.mp4', 'Project-image', 'Project Image'),
-(16, 6, 'bence-boros-anapPhJFRhM-unsplash.jpg', 'Project-image', 'Project Image'),
-(17, 6, 'east-riding-archives-UwMslmQ4BqM-unsplash.jpg', 'Project-image', 'Project Image'),
-(18, 6, 'pexels-alilove69-4883682.jpg', 'Project-image', 'Project Image'),
-(19, 6, 'lenny-kuhne-jHZ70nRk7Ns-unsplash.jpg', 'Project-image', 'Project Image'),
-(20, 6, 'austrian-national-library-3c1Jv1EXYtc-unsplash.jpg', 'Project-image', 'Project Image'),
-(27, 8, 'Unicorn.jpg', 'Thumbnail', 'Thumbnail'),
-(28, 8, 'Blue.jpg', 'Hover_image', 'Hover Image'),
-(29, 8, 'Birthday.jpg', 'Project-image', 'Project Image'),
-(30, 8, 'Blue.jpg', 'Project-image', 'Project Image'),
-(31, 8, 'Color.jpg', 'Project-image', 'Project Image'),
-(32, 8, 'heartscrapbook.jpg', 'Project-image', 'Project Image'),
-(33, 8, 'Keychain.jpg', 'Project-image', 'Project Image'),
-(34, 8, 'RecipeBook.jpg', 'Project-image', 'Project Image'),
-(35, 8, 'Unicorn.jpg', 'Project-image', 'Project Image'),
-(36, 8, 'Valentines.mp4', 'Project-image', 'Project Image'),
-(37, 9, 'Birthday.jpg', 'Thumbnail', 'Thumbnail'),
-(38, 9, 'Color.jpg', 'Hover_image', 'Hover Image'),
-(39, 9, 'Color.jpg', 'Project-image', 'Project Image'),
-(40, 9, 'heartscrapbook.jpg', 'Project-image', 'Project Image'),
-(41, 9, 'Keychain.jpg', 'Project-image', 'Project Image'),
-(42, 9, 'Logo.png', 'Project-image', 'Project Image'),
-(43, 9, 'LogoMain.png', 'Project-image', 'Project Image'),
-(44, 9, 'Logo-white.png', 'Project-image', 'Project Image'),
-(45, 9, 'RecipeBook.jpg', 'Project-image', 'Project Image'),
-(46, 9, 'Unicorn.jpg', 'Project-image', 'Project Image'),
-(47, 9, 'Valentines.mp4', 'Project-image', 'Project Image'),
-(56, 11, 'Home.png', 'Thumbnail', 'Thumbnail'),
-(57, 11, 'FindRecipe.png', 'Hover_image', 'Hover Image'),
-(58, 11, 'Nutrimatch.png', 'Project-image', 'Project Image'),
-(59, 12, 'Nutrimatch.png', 'Thumbnail', 'Thumbnail'),
-(60, 12, 'monika-grabkowska-pHeX8H9WQpY-unsplash.jpg', 'Hover_image', 'Hover Image'),
-(61, 12, 'Nutrimatch.png', 'Project-image', 'Project Image'),
 (78, 15, '8401254-hd_1920_1080_30fps.mp4', 'Thumbnail', 'Thumbnail'),
 (79, 15, '11.png', 'Hover_image', 'Hover Image'),
 (98, 15, '2.png', 'Project-image', 'Project Image'),
@@ -155,7 +111,7 @@ INSERT INTO `images` (`image_id`, `project_id`, `image_url`, `type`, `alt_text`)
 (422, 39, 'HPH_Guidelines_main.mp4', 'Project-image', 'Project-image'),
 (423, 39, 'torus_rays.gif', 'Project-image', 'Project-image'),
 (424, 39, 'MM_Phone_HPH_Coffee_IG_Story_PoR_website.mp4', 'Project-image', 'Project-image'),
-(425, 17, 'Haus.png', 'Project-image', 'Project-image');
+(432, 17, 'Haus.png', 'Project-image', 'Project-image');
 
 -- --------------------------------------------------------
 
@@ -256,19 +212,19 @@ ALTER TABLE `admin_users`
 -- AUTO_INCREMENT for table `images`
 --
 ALTER TABLE `images`
-  MODIFY `image_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=432;
+  MODIFY `image_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=443;
 
 --
 -- AUTO_INCREMENT for table `layout`
 --
 ALTER TABLE `layout`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=45;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=47;
 
 --
 -- AUTO_INCREMENT for table `projects`
 --
 ALTER TABLE `projects`
-  MODIFY `project_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=41;
+  MODIFY `project_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=43;
 
 --
 -- Constraints for dumped tables

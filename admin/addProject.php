@@ -1,5 +1,4 @@
 <?php
-// Start the session
 session_start();
 
 $inactive = 600; // timeout period in seconds (10 minutes)
@@ -21,173 +20,114 @@ if (!isset($_SESSION['admin_logged_in']) || $_SESSION['admin_logged_in'] !== tru
     exit;
 }
 
-// Turn on error reporting for debugging
-error_reporting(E_ALL);
-ini_set('display_errors', 1);
+include("../includes/connect.php");
 
-// Check if the form for adding a new project is submitted
-if (isset($_POST['newProject'])) {
-    // Retrieve data from the form
+if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['newProject'])) {
     $client = $_POST['client'];
     $description_short = $_POST['description_short'];
     $description_long = $_POST['description_long'];
     $type_of_work = $_POST['type_of_work'];
     $industry = $_POST['industry'];
-    $url = $_POST['url'];
     $year = $_POST['year'];
+    $url = $_POST['url'];
 
-    // Connection string
-    // Ensure the connection file is included and the $connect variable is set
-    if (!file_exists('../includes/connect.php')) {
-        die('Error: Connection file not found.');
-    } else {
-        include('../includes/connect.php');
-    }
+    // Insert into projects table using prepared statements
+    $query_project = "INSERT INTO projects (client, description_short, description_long, type_of_work, industry, year, url) 
+                      VALUES (?, ?, ?, ?, ?, ?, ?)";
+    $stmt = mysqli_prepare($connect, $query_project);
+    mysqli_stmt_bind_param($stmt, 'sssssss', $client, $description_short, $description_long, $type_of_work, $industry, $year, $url);
+    $result_project = mysqli_stmt_execute($stmt);
 
-    // Array to store error messages
-    $errors = [];
+    if ($result_project) {
+        $project_id = mysqli_insert_id($connect); // Get the last inserted project ID
 
-    // Handle file uploads
-    $uploadDirectory = '../uploads/';
+        // Handle image uploads
+        $uploadDirectory = '../uploads/';
+        $errors = [];
 
-    // Function to handle file upload and database insertion
-    function uploadFile($file, $type, $altText, $connect, &$errors) {
-        global $uploadDirectory;
-        if (isset($file) && $file['error'] === UPLOAD_ERR_OK) {
-            $tmpPath = $file['tmp_name'];
-            $fileName = basename($file['name']);
-            $uploadPath = $uploadDirectory . $fileName;
+        // Function to generate unique file name
+        function generateUniqueFileName($uploadDirectory, $fileName) {
+            $filePath = $uploadDirectory . $fileName;
+            $fileInfo = pathinfo($filePath);
+            $baseName = $fileInfo['filename'];
+            $extension = isset($fileInfo['extension']) ? '.' . $fileInfo['extension'] : '';
+            $counter = 1;
 
-            // Check if file already exists and if it does duplicate the file in the directory to avoid clashes
-            $fileCount = 1;
-            $originalFileName = $fileName;
-            while (file_exists($uploadPath)) {
-                $fileName = pathinfo($originalFileName, PATHINFO_FILENAME) . '_' . $fileCount . '.' . pathinfo($originalFileName, PATHINFO_EXTENSION);
-                $uploadPath = $uploadDirectory . $fileName;
-                $fileCount++;
+            while (file_exists($filePath)) {
+                $filePath = $uploadDirectory . $baseName . $counter . $extension;
+                $counter++;
             }
 
-            $fileType = mime_content_type($tmpPath);
+            return basename($filePath);
+        }
 
-            // Validate supported file types
-            $supportedTypes = ['image/jpeg', 'image/jpg', 'image/png', 'video/mp4', 'image/gif'];
-            if (!in_array($fileType, $supportedTypes)) {
-                $errors[] = "Unsupported file type for $altText.";
-                return false;
-            }
+        // Function to handle image insertion into database
+        function insertImage($connect, $project_id, $image_url, $type) {
+            $query_insert = "INSERT INTO images (project_id, image_url, type, alt_text) VALUES (?, ?, ?, ?)";
+            $stmt_insert = mysqli_prepare($connect, $query_insert);
+            $alt_text = ucfirst(str_replace('_', ' ', $type));
+            mysqli_stmt_bind_param($stmt_insert, 'isss', $project_id, $image_url, $type, $alt_text);
+            mysqli_stmt_execute($stmt_insert);
+            mysqli_stmt_close($stmt_insert);
+        }
 
-            // Move uploaded file to destination
-            if (move_uploaded_file($tmpPath, $uploadPath)) {
-                return $fileName; // Return the renamed filename for storage in the database
+        // Thumbnail image
+        if (isset($_FILES['Thumbnail']) && $_FILES['Thumbnail']['error'] === UPLOAD_ERR_OK) {
+            $thumbnailTmpPath = $_FILES['Thumbnail']['tmp_name'];
+            $thumbnailName = generateUniqueFileName($uploadDirectory, basename($_FILES['Thumbnail']['name']));
+            $thumbnailUploadPath = $uploadDirectory . $thumbnailName;
+
+            if (move_uploaded_file($thumbnailTmpPath, $thumbnailUploadPath)) {
+                insertImage($connect, $project_id, $thumbnailName, 'Thumbnail');
             } else {
-                $errors[] = "Failed to move $altText to the upload directory.";
-                return false;
+                $errors[] = "Failed to upload Thumbnail.";
             }
+        }
+
+        // Hover image
+        if (isset($_FILES['Hover_image']) && $_FILES['Hover_image']['error'] === UPLOAD_ERR_OK) {
+            $hoverTmpPath = $_FILES['Hover_image']['tmp_name'];
+            $hoverName = generateUniqueFileName($uploadDirectory, basename($_FILES['Hover_image']['name']));
+            $hoverUploadPath = $uploadDirectory . $hoverName;
+
+            if (move_uploaded_file($hoverTmpPath, $hoverUploadPath)) {
+                insertImage($connect, $project_id, $hoverName, 'Hover_image');
+            } else {
+                $errors[] = "Failed to upload Hover Image.";
+            }
+        }
+
+        // Project images
+        if (isset($_FILES['Project-image']) && count($_FILES['Project-image']['name']) > 0) {
+            for ($i = 0; $i < count($_FILES['Project-image']['name']); $i++) {
+                if ($_FILES['Project-image']['error'][$i] === UPLOAD_ERR_OK) {
+                    $projectImageTmpPath = $_FILES['Project-image']['tmp_name'][$i];
+                    $projectImageName = generateUniqueFileName($uploadDirectory, basename($_FILES['Project-image']['name'][$i]));
+                    $projectImageUploadPath = $uploadDirectory . $projectImageName;
+
+                    if (move_uploaded_file($projectImageTmpPath, $projectImageUploadPath)) {
+                        insertImage($connect, $project_id, $projectImageName, 'Project-image');
+                    } else {
+                        $errors[] = "Failed to upload Project Image {$projectImageName}.";
+                    }
+                }
+            }
+        }
+
+        if (empty($errors)) {
+            header("Location: layout.php?project_id=$project_id");
+            exit();
         } else {
-            $errors[] = "Failed to upload $altText.";
-            return false;
+            // Redirect to error.php with error messages
+            $errorString = implode("<br>", $errors);
+            header("Location: error.php?message=" . urlencode($errorString));
+            exit();
         }
-    }
-
-    // Validate and upload files before inserting the project into the database
-    $thumbnail = uploadFile($_FILES['Thumbnail'], 'Thumbnail', 'Thumbnail', $connect, $errors);
-    $hoverImage = uploadFile($_FILES['Hover_image'], 'Hover_image', 'Hover Image', $connect, $errors);
-    $projectImages = [];
-    if (isset($_FILES['Project-image']) && count($_FILES['Project-image']['name']) > 0) {
-        for ($i = 0; $i < count($_FILES['Project-image']['name']); $i++) {
-            $file = [
-                'name' => $_FILES['Project-image']['name'][$i],
-                'tmp_name' => $_FILES['Project-image']['tmp_name'][$i],
-                'error' => $_FILES['Project-image']['error'][$i],
-            ];
-            $uploadedFile = uploadFile($file, 'Project-image', 'Project Image', $connect, $errors);
-            if ($uploadedFile !== false) {
-                $projectImages[] = $uploadedFile;
-            }
-        }
-    }
-
-    // Check if any errors occurred during file upload
-    if (!empty($errors)) {
-        // Redirect to error.php with error messages
-        $errorString = implode("<br>", $errors);
-        header("Location: error.php?message=" . urlencode($errorString));
-        exit();
-    }
-
-    // If there are no errors, insert the project into the database
-    $query = "INSERT INTO projects (client, description_short, description_long, type_of_work, industry, url, year) 
-              VALUES (?, ?, ?, ?, ?, ?, ?)";
-    $stmt = mysqli_prepare($connect, $query);
-
-    // Assign values to variables before passing them by reference
-    $client_var = $client;
-    $description_short_var = $description_short;
-    $description_long_var = $description_long;
-    $type_of_work_var = $type_of_work;
-    $industry_var = $industry;
-    $url_var = $url;
-    $year_var = $year;
-
-    mysqli_stmt_bind_param($stmt, 'sssssss', $client_var, $description_short_var, $description_long_var, $type_of_work_var, $industry_var, $url_var, $year_var);
-
-    if (mysqli_stmt_execute($stmt)) {
-        $project_id = mysqli_insert_id($connect); // Get the ID of the newly inserted project
-
-        // Insert file details into the database
-        if ($thumbnail) {
-            $query = "INSERT INTO images (project_id, image_url, type, alt_text) 
-                      VALUES (?, ?, ?, ?)";
-            $stmt = mysqli_prepare($connect, $query);
-
-            $project_id_var = $project_id;
-            $thumbnail_var = $thumbnail;
-            $thumbnail_type = 'Thumbnail';
-            $thumbnail_alt = 'Thumbnail';
-
-            mysqli_stmt_bind_param($stmt, 'isss', $project_id_var, $thumbnail_var, $thumbnail_type, $thumbnail_alt);
-            mysqli_stmt_execute($stmt);
-        }
-
-        if ($hoverImage) {
-            $query = "INSERT INTO images (project_id, image_url, type, alt_text) 
-                      VALUES (?, ?, ?, ?)";
-            $stmt = mysqli_prepare($connect, $query);
-
-            $hoverImage_var = $hoverImage;
-            $hoverImage_type = 'Hover_image';
-            $hoverImage_alt = 'Hover Image';
-
-            mysqli_stmt_bind_param($stmt, 'isss', $project_id_var, $hoverImage_var, $hoverImage_type, $hoverImage_alt);
-            mysqli_stmt_execute($stmt);
-        }
-
-        foreach ($projectImages as $image) {
-            $query = "INSERT INTO images (project_id, image_url, type, alt_text) 
-                      VALUES (?, ?, ?, ?)";
-            $stmt = mysqli_prepare($connect, $query);
-
-            $image_var = $image;
-            $image_type = 'Project-image';
-            $image_alt = 'Project Image';
-
-            mysqli_stmt_bind_param($stmt, 'isss', $project_id_var, $image_var, $image_type, $image_alt);
-            mysqli_stmt_execute($stmt);
-        }
-
-        // Redirect to the layout page if everything is successful
-        header("Location: layout.php?project_id=$project_id");
-        exit();
     } else {
-        // Display error message if the query fails
-        echo "Failed: " . mysqli_stmt_error($stmt);
+        // Redirect to error.php with error message
+        header("Location: error.php?message=" . urlencode("Error adding project: " . mysqli_error($connect)));
+        exit();
     }
-
-    // Close the statement
-    mysqli_stmt_close($stmt);
-
-    // Close the connection
-    mysqli_close($connect);
 } else {
     // Redirect to error.php if form submission is unexpected
     header("Location: error.php?message=" . urlencode("You are not supposed to be here!"));
